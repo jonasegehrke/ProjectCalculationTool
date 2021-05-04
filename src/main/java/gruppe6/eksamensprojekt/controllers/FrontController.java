@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FrontController {
 
-    @GetMapping
+    @GetMapping(value = "/")
     public String dashboard(){
-        return index.html;
+        return "dashboard.html";
     }
 }
