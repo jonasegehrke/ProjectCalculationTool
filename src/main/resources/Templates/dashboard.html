@@ -15,27 +15,33 @@
     </h1>
 </div>
 
-<header>
-    <div class="logo-container">
-        <h4>Project Calculator</h4>
-    </div>
-    <nav>
-        <a href="#" class="create-project"><li>+</li></a>
-        <ul class="project-list">
-            <a href="#"><li>Project name 1 <a>deleteIcon</a></li></a>
-            <a href="#"><li>Project name 2 <a>deleteIcon</a></li></a>
-            <a href="#"><li>Project name 3 <a>deleteIcon</a></li></a>
-            <a href="#"><li>Project name 4 <a>deleteIcon</a></li></a>
-        </ul>
-    </nav>
-</header>
+<div class="splash-intro">
+    <h1 class="splash-logo-header">
+        <span class="splash-logo">Project</span>&nbsp;<span class="splash-logo">Calculator</span>
+    </h1>
+</div>
 
-<main>
-    <div class="top-bar">
-        <label for="total-hours">Total hours:</label>
-        <text name="total-hours" id="total-hours">XXX</text>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Project Calculator</h2>
+        <li id="create-project-link"><a href="#" id="create-project-btn">addIcon</a></li>
+        <ul>
+            <li><a href="#">Project 1</a></li>
+            <li><a href="#">Project 2</a></li>
+            <li><a href="#">Project 3</a></li>
+            <li><a href="#">Project 4</a></li>
+            <li><a href="#">Project 5</a></li>
+            <li><a href="#">Project 6</a></li>
+            <li><a href="#">Project 7</a></li>
+        </ul>
     </div>
-</main>
+    <div class="main_content">
+        <div class="header">Total hours: XXX</div>
+        <div class="info">
+            <div>HERE GOES THE GRID SOMEHOW</div>
+        </div>
+    </div>
+</div>
 
 <script th:src="@{/js/dashboardJS.js}"></script>
 </body>
