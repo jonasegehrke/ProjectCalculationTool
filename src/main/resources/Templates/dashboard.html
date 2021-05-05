@@ -9,14 +9,25 @@
 </head>
 <body>
 
-<div class="intro">
-    <h1 class="logo-header">
-        <span class="logo">Project</span><span class="logo">Calculator</span>
+<div class="splash-intro">
+    <h1 class="splash-logo-header">
+        <span class="splash-logo">Project</span>&nbsp;<span class="splash-logo">Calculator</span>
     </h1>
 </div>
 
 <header>
-    <h4>Project Calculator</h4>
+    <div class="logo">
+        <h4>Project Calculator</h4>
+    </div>
+    <nav>
+        <a href="#" class="create-project">+</a>
+        <ul class="project-list">
+            <a href="#"><li>Project name 1 <a>deleteIcon</a></li></a>
+            <a href="#"><li>Project name 2 <a>deleteIcon</a></li></a>
+            <a href="#"><li>Project name 3 <a>deleteIcon</a></li></a>
+            <a href="#"><li>Project name 4 <a>deleteIcon</a></li></a>
+        </ul>
+    </nav>
 </header>
 
 <script th:src="@{/js/dashboardJS.js}"></script>

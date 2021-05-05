@@ -1,6 +1,6 @@
-let intro = document.querySelector(".intro");
-let logo = document.querySelector(".logo-header");
-let logoSpan = document.querySelectorAll(".logo");
+let intro = document.querySelector(".splash-intro");
+let logo = document.querySelector(".splash-logo-header");
+let logoSpan = document.querySelectorAll(".splash-logo");
 
 window.addEventListener('DOMContentLoaded', ()=>{
 

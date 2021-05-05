@@ -4,24 +4,61 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgb(196, 196, 196);
+}
+
 header{
+    width: 300px;
+}
+
+.create-project{
+    text-decoration: none;
+}
+
+header nav{
     position: relative;
     left: 0;
     top: 0;
     width: 100%;
-    height: 80px;
+    height: 100vh;
+    background-color: rgba(24, 158, 151, 0.644);
+    text-align: center;
 }
 
-header h4{
-    position: absolute;
-    left: 10%;
-    bottom: 1rem;
+.logo{
+    height: 150px;
+    text-align: center;
+    background-color: rgba(20, 143, 137, 0.753);
+}
+
+.logo h4{
+    position: relative;
     font-size: 1.6rem;
+    top: 40%;
+}
+
+.project-list{
+    position: absolute;
+    top: 3rem;
+    text-align: center;
+    width: 100%;
+    font-size: 1.6rem;
+}
+
+.project-list li{
+    margin-top: 10px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.project-list a{
+    text-decoration: none;
 }
 
 /* splash screen */
 
-.intro{
+.splash-intro{
     position: fixed;
     z-index: 1;
     left: 0;
@@ -32,7 +69,7 @@ header h4{
     transition: 1s;
 }
 
-.logo-header{
+.splash-logo-header{
     position: absolute;
     top: 40%;
     left: 50%;
@@ -40,20 +77,20 @@ header h4{
     color: #ffffff;
 }
 
-.logo{
+.splash-logo{
     position: relative;
     display: inline-block;
     bottom: -20px;
     opacity: 0;
 }
 
-.logo.active{
+.splash-logo.active{
     bottom: 0;
     opacity: 1;
     transition: ease-in-out 0.5s;
 }
 
-.logo.fade{
+.splash-logo.fade{
     bottom: 150px;
     opacity: 0;
     transition: ease-in-out 0.5s;
