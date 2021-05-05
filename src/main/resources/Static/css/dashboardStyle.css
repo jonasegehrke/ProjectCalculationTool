@@ -8,39 +8,51 @@ body{
     background-color: rgb(196, 196, 196);
 }
 
-header{
-    width: 300px;
+.top-bar{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    left: 15%;
+    width: 85%;
+    height: 150px;
+    top: 0%;
+    background-color: rgb(151, 151, 151);
 }
 
-.create-project{
+header{
+    width: 15%;
+    height: 100%;
+}
+
+a, li{
+    list-style-type: none;
     text-decoration: none;
 }
 
 header nav{
-    position: relative;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(24, 158, 151, 0.644);
     text-align: center;
 }
 
-.logo{
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 150px;
     text-align: center;
     background-color: rgba(20, 143, 137, 0.753);
 }
 
-.logo h4{
-    position: relative;
+.logo-container h4{
     font-size: 1.6rem;
     top: 40%;
 }
 
 .project-list{
-    position: absolute;
-    top: 3rem;
     text-align: center;
     width: 100%;
     font-size: 1.6rem;
@@ -48,12 +60,6 @@ header nav{
 
 .project-list li{
     margin-top: 10px;
-    list-style-type: none;
-    text-decoration: none;
-}
-
-.project-list a{
-    text-decoration: none;
 }
 
 /* splash screen */

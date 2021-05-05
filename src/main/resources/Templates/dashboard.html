@@ -16,11 +16,11 @@
 </div>
 
 <header>
-    <div class="logo">
+    <div class="logo-container">
         <h4>Project Calculator</h4>
     </div>
     <nav>
-        <a href="#" class="create-project">+</a>
+        <a href="#" class="create-project"><li>+</li></a>
         <ul class="project-list">
             <a href="#"><li>Project name 1 <a>deleteIcon</a></li></a>
             <a href="#"><li>Project name 2 <a>deleteIcon</a></li></a>
@@ -29,6 +29,13 @@
         </ul>
     </nav>
 </header>
+
+<main>
+    <div class="top-bar">
+        <label for="total-hours">Total hours:</label>
+        <text name="total-hours" id="total-hours">XXX</text>
+    </div>
+</main>
 
 <script th:src="@{/js/dashboardJS.js}"></script>
 </body>
