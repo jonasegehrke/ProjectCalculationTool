@@ -1,12 +1,14 @@
 package gruppe6.eksamensprojekt.domain.model;
 
+
 public class Project {
 
     private int id;
     private String title;
     private double hours;
 
-    public Project(String title) {
+    public Project(String title, double hours) {
+        this.hours = hours;
         this.title = title;
     }
 

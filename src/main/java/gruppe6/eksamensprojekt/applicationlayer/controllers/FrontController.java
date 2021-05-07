@@ -7,7 +7,13 @@ import gruppe6.eksamensprojekt.domain.model.Project;
 import gruppe6.eksamensprojekt.domain.model.SubTask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.ArrayList;
 
 @Controller
 public class FrontController {
@@ -16,42 +22,29 @@ public class FrontController {
     TaskMapper taskMapper = new TaskMapper();
     SubTaskMapper subTaskMapper = new SubTaskMapper();
 
-    Project project;
-    Task task;
-    SubTask subTask;
-
     @GetMapping(value = "/")
+    public String dashboard(Model model){
+        ArrayList<Project> projectList = projectMapper.readAllProjects();
+        model.addAttribute("project-list", projectList);
+        
+        return "dashboard.html";
+    }
 
-    public String dashboard(){
-
-        //Create project
-        project = new Project("TestObject");
-        projectMapper.createProject(project);
-
-
-        //Create task
-        task = new Task("TestObject", 1);
-        taskMapper.createTask(task);
-
-
-        //create subtasks
-        double hours = 0;
-        for(int i = 0; i < 3; i++){
-
-            subTask = new SubTask("Subtask" + i, 3, 1);
-            hours += subTask.getHours();
-            subTaskMapper.createSubTask(subTask);
+    @PostMapping(value = "/create-project")
+    public String createProject(WebRequest request){
+        String title = request.getParameter("project-title");
+        if(title!=null) {
+            Project project = new Project(title, 0);
+            projectMapper.createProject(project);
         }
 
-        //update hours
-        task.setHours(hours);
-        taskMapper.updateTask(task);
+        return "redirect:/";
+    }
 
-
-        project.setHours(hours);
-        projectMapper.updateProject(project);
-
-
-        return "dashboard.html";
+    @PostMapping(value = "/create-task")
+    public String createTask(WebRequest request){
+        String title = request.getParameter("task-title");
+        //Task task = new Task(title);
+        return "redirect:/";
     }
 }

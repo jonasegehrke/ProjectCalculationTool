@@ -15,30 +15,28 @@
     </h1>
 </div>
 
-<div class="splash-intro">
-    <h1 class="splash-logo-header">
-        <span class="splash-logo">Project</span>&nbsp;<span class="splash-logo">Calculator</span>
-    </h1>
-</div>
-
 <div class="wrapper">
     <div class="sidebar">
         <h2>Project Calculator</h2>
-        <li id="create-project-link"><a href="#" id="create-project-btn">addIcon</a></li>
-        <ul>
-            <li><a href="#">Project 1</a></li>
-            <li><a href="#">Project 2</a></li>
-            <li><a href="#">Project 3</a></li>
-            <li><a href="#">Project 4</a></li>
-            <li><a href="#">Project 5</a></li>
-            <li><a href="#">Project 6</a></li>
-            <li><a href="#">Project 7</a></li>
+        <form id="create-project-form" th:action="@{/create-project}" method="post">
+            <input type="text" name="project-title" id="project-title" placeholder="enter project name">
+            <button type="submit" name="create-project" id="create-project-btn">addIcon</button>
+        </form>
+
+        <ul th:each="project: ${project-list}">
+            <li th:text="${project.title}"><a href="#"></a></li>
         </ul>
     </div>
     <div class="main_content">
         <div class="header">Total hours: XXX</div>
         <div class="info">
-            <div>HERE GOES THE GRID SOMEHOW</div>
+            <div>
+                <form th:action="@{/create-task}" method="post">
+                    <textarea name="task-title" id="task-title" cols="30" rows="10"></textarea>
+                    <button type="submit">add task</button>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
