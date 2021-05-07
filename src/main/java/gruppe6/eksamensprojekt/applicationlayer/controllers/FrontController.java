@@ -25,8 +25,8 @@ public class FrontController {
     @GetMapping(value = "/")
     public String dashboard(Model model){
         ArrayList<Project> projectList = projectMapper.readAllProjects();
-        model.addAttribute("project-list", projectList);
-        
+        model.addAttribute("projectlist", projectList);
+
         return "dashboard.html";
     }
 

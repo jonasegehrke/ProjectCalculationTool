@@ -23,7 +23,7 @@
             <button type="submit" name="create-project" id="create-project-btn">addIcon</button>
         </form>
 
-        <ul th:each="project: ${project-list}">
+        <ul th:each="project: ${projectlist}">
             <li th:text="${project.title}"><a href="#"></a></li>
         </ul>
     </div>

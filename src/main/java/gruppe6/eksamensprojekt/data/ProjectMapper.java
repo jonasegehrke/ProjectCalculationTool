@@ -51,9 +51,9 @@ public class ProjectMapper {
         try{
             Connection conn = DBManager.getConnection();
             String SQL = "SELECT * FROM project";
-            PreparedStatement ps = conn.prepareStatement(SQL);
+            Statement stmt = conn.createStatement();
 
-            ResultSet rs = ps.getGeneratedKeys();
+            ResultSet rs = stmt.executeQuery(SQL);
 
             while(rs.next()){
                 int id = rs.getInt(1);
@@ -63,7 +63,6 @@ public class ProjectMapper {
                 project.setId(id);
                 list.add(project);
             }
-
 
         }catch (SQLException e){
             e.printStackTrace();
