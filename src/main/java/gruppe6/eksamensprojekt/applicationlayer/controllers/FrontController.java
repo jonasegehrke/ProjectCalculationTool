@@ -24,8 +24,7 @@ public class FrontController {
 
     @GetMapping(value = "/")
     public String dashboard(Model model){
-        ArrayList<Project> projectList = projectMapper.readAllProjects();
-        model.addAttribute("projectlist", projectList);
+        renderProjectList(model);
 
         return "dashboard.html";
     }
@@ -46,5 +45,16 @@ public class FrontController {
         String title = request.getParameter("task-title");
         //Task task = new Task(title);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/project")
+    public String project(@RequestParam("id") int id, Model model){
+        renderProjectList(model);
+        return "project.html";
+    }
+
+    public void renderProjectList(Model model){
+        ArrayList<Project> projectList = projectMapper.readAllProjects();
+        model.addAttribute("projectlist", projectList);
     }
 }

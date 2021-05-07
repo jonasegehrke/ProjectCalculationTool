@@ -29,7 +29,18 @@
             </li>
         </ul>
     </div>
-    <div class="main_content"></div>
+    <div class="main_content">
+        <div class="header">Total hours: XXX</div>
+        <div class="info">
+            <div>
+                <form th:action="@{/create-task}" method="post">
+                    <input type="text" name="task-title" id="task-title">
+                    <button type="submit">add task</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <script th:src="@{/js/dashboardJS.js}"></script>
