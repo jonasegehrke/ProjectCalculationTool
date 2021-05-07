@@ -18,9 +18,13 @@ import java.util.ArrayList;
 @Controller
 public class FrontController {
 
+    int currentProjectId;
+
     ProjectMapper projectMapper = new ProjectMapper();
     TaskMapper taskMapper = new TaskMapper();
     SubTaskMapper subTaskMapper = new SubTaskMapper();
+    ArrayList<Project> projectList;
+    ArrayList<Task> taskList;
 
     @GetMapping(value = "/")
     public String dashboard(Model model){
@@ -43,18 +47,34 @@ public class FrontController {
     @PostMapping(value = "/create-task")
     public String createTask(WebRequest request){
         String title = request.getParameter("task-title");
-        //Task task = new Task(title);
-        return "redirect:/";
+        Task task = new Task(title, 0, currentProjectId);
+        taskMapper.createTask(task);
+        return "redirect:/project?id=" + currentProjectId;
     }
 
     @GetMapping(value = "/project")
     public String project(@RequestParam("id") int id, Model model){
         renderProjectList(model);
+        for(int i = 0; i < projectList.size(); i++){
+            if(projectList.get(i).getId()==id){
+                model.addAttribute("project", projectList.get(i));
+                currentProjectId = projectList.get(i).getId();
+            }
+        }
+
+        taskList = taskMapper.readAllTasks();
+        ArrayList<Task> currentProjectTaskList = new ArrayList<>();
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).getProjectId()==id){
+                currentProjectTaskList.add(taskList.get(i));
+            }
+        }
+        model.addAttribute("tasklist", currentProjectTaskList);
         return "project.html";
     }
 
     public void renderProjectList(Model model){
-        ArrayList<Project> projectList = projectMapper.readAllProjects();
+        projectList = projectMapper.readAllProjects();
         model.addAttribute("projectlist", projectList);
     }
 }

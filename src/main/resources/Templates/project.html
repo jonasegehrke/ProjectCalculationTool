@@ -30,14 +30,24 @@
         </ul>
     </div>
     <div class="main_content">
-        <div class="header">Total hours: XXX</div>
+        <div class="header">
+            <p>Project title: </p>
+            <p th:text="${project.title}"></p>
+            <p>Hours planned: </p>
+            <p th:text="${project.hours}"></p>
+        </div>
         <div class="info">
             <div>
                 <form th:action="@{/create-task}" method="post">
                     <input type="text" name="task-title" id="task-title">
                     <button type="submit">add task</button>
                 </form>
-
+                <ul>
+                    <li th:each="task: ${tasklist}">
+                        <p th:text="${task.title}"></p>
+                        <p th:text="${task.hours}"></p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

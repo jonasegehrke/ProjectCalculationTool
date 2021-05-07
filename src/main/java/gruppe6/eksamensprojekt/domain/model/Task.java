@@ -7,10 +7,10 @@ public class Task {
     private double hours;
     private int projectId;
 
-    public Task(String title, int projectId) {
+    public Task(String title, double hours, int projectId) {
         this.title = title;
+        this.hours = hours;
         this.projectId = projectId;
-
     }
 
     public int getId() {
