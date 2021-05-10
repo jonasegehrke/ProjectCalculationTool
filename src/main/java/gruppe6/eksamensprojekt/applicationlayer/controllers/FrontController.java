@@ -1,5 +1,6 @@
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
+import gruppe6.eksamensprojekt.domain.model.Task;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import gruppe6.eksamensprojekt.service.SubTaskService;
 import gruppe6.eksamensprojekt.service.TaskService;
@@ -38,12 +39,25 @@ public class FrontController {
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
+    @PostMapping(value = "/create-subtask")
+    public String createSubtask(@RequestParam("id") int id, WebRequest request) {
+        String title = request.getParameter("subtask-title");
+        double hours = Double.parseDouble(request.getParameter("subtask-hours"));
+
+        subTaskService.createSubTask(title,hours,id);
+
+
+        return "redirect:/project?id=" + projectService.getCurrentProjectId();
+    }
+
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
         model.addAttribute("projectlist", projectService.renderProjectList(model));
         model.addAttribute("project", projectService.findProject(id));
         model.addAttribute("tasklist", taskService.findTaskList(id));
         model.addAttribute("subtasklist", subTaskService.findSubTaskList(taskService.findTaskList(id)));
+
+
         return "project.html";
     }
 

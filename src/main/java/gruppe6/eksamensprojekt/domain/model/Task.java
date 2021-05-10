@@ -1,16 +1,27 @@
 package gruppe6.eksamensprojekt.domain.model;
 
+import java.util.ArrayList;
+
 public class Task {
 
     private int id;
     private String title;
     private double hours;
     private int projectId;
+    private ArrayList<SubTask> subTasks;
 
     public Task(String title, double hours, int projectId) {
         this.title = title;
         this.hours = hours;
         this.projectId = projectId;
+    }
+
+    public void addSubTask(SubTask subTask){
+        subTasks.add(subTask);
+    }
+
+    public ArrayList<SubTask> getSubTasks() {
+        return subTasks;
     }
 
     public int getId() {

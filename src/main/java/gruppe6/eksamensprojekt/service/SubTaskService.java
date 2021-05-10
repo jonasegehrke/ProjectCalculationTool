@@ -18,17 +18,20 @@ public class SubTaskService {
 
     public ArrayList findSubTaskList(ArrayList<Task> currentProjectTaskList) {
         subTaskList = subTaskMapper.readAllSubTasks();
-        ArrayList<SubTask> subTaskList = new ArrayList<>();
         ArrayList<SubTask> currentSubTaskList= new ArrayList<>();
+
+
+
 
 
             for (int i = 0; i < currentProjectTaskList.size(); i++) {
                 for(int j = 0; j < subTaskList.size(); j++){
-                    if ( currentProjectTaskList.get(i).getId()==subTaskList.get(i).getTaskId()){
-                        currentSubTaskList.add(subTaskList.get(i));
+                    if (currentProjectTaskList.get(i).getId()==subTaskList.get(j).getTaskId()){
+                        currentSubTaskList.add(subTaskList.get(j));
                     }
                 }
             }
+
 
         return currentSubTaskList;
     }

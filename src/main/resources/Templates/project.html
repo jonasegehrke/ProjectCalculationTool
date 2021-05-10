@@ -43,10 +43,22 @@
                     <p th:text="${task.hours}"></p>
                 </div>
                 <div class="card-content">
-                    <ul>
-                        <li></li>
-                    </ul>
-                <button class="create-subtask-btn">&plus;</button>
+                    <div th:each="subtask: ${subtasklist}">
+                        <div th:if="${task.id == subtask.taskId}">
+                            <p th:text="${subtask.title}"></p>
+                            <p th:text="${subtask.hours}"></p>
+                        </div>
+
+
+                    </div>
+
+                    <form th:action="@{/create-subtask(id=${task.id})}" method="post">
+                        <input type="text" name="subtask-title" id="subtask-title" placeholder="subtask title">
+                        <input type="number" name="subtask-hours" id="subtask-hours" placeholder="subtask hours">
+
+                        <button type ="submit" class="create-subtask-btn">&plus;</button>
+                    </form>
+
                 </div>
             </div>
 
