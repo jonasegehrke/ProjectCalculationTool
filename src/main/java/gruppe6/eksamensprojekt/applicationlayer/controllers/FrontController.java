@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 public class FrontController {
@@ -43,20 +46,17 @@ public class FrontController {
     public String createSubtask(@RequestParam("id") int id, WebRequest request) {
         String title = request.getParameter("subtask-title");
         double hours = Double.parseDouble(request.getParameter("subtask-hours"));
-
         subTaskService.createSubTask(title,hours,id);
-
-
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
-        model.addAttribute("projectlist", projectService.renderProjectList(model));
-        model.addAttribute("project", projectService.findProject(id));
-        model.addAttribute("tasklist", taskService.findTaskList(id));
-        model.addAttribute("subtasklist", subTaskService.findSubTaskList(taskService.findTaskList(id)));
 
+        model.addAttribute("projectlist", projectService.renderProjectList(model));
+        model.addAttribute("subtasklist", subTaskService.findSubTaskList(taskService.findTaskList(id)));
+        model.addAttribute("tasklist", taskService.findTaskList(id));
+        model.addAttribute("project", projectService.findProject(id));
 
         return "project.html";
     }

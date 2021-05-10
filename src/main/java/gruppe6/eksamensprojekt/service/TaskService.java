@@ -1,6 +1,8 @@
 package gruppe6.eksamensprojekt.service;
 
+import gruppe6.eksamensprojekt.data.ProjectMapper;
 import gruppe6.eksamensprojekt.data.TaskMapper;
+import gruppe6.eksamensprojekt.domain.model.Project;
 import gruppe6.eksamensprojekt.domain.model.SubTask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 
@@ -10,11 +12,13 @@ public class TaskService {
     TaskMapper taskMapper = new TaskMapper();
     ArrayList<Task> taskList;
     ArrayList<Task> currentProjectTaskList;
-    private int currentTaskId;
 
-    public int getCurrentTaskId() {
-        return currentTaskId;
-    }
+
+    //Use service instead of mapper here!
+    ProjectService projectService = new ProjectService();
+    ProjectMapper projectMapper = new ProjectMapper();
+    double projectHours;
+
 
     public void createTask(String title, int currentProjectId) {
         Task task = new Task(title, 0, currentProjectId);
@@ -28,23 +32,13 @@ public class TaskService {
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getProjectId() == id) {
                 currentProjectTaskList.add(taskList.get(i));
+                projectHours += taskList.get(i).getHours();
             }
         }
 
+        projectMapper.updateProject(id, projectHours);
+        projectHours = 0;
 
         return currentProjectTaskList;
     }
-
-    public void addSubTaskToTaskList(ArrayList<SubTask> subTaskList){
-
-        for(int i = 0; i < currentProjectTaskList.size(); i++){
-            for(int j = 0; j < subTaskList.size(); j++){
-                if(currentProjectTaskList.get(i).getId() == subTaskList.get(i).getTaskId()){
-                    currentProjectTaskList.get(i).addSubTask(subTaskList.get(i));
-                }
-            }
-        }
-
-    }
-
 }

@@ -28,14 +28,15 @@ public class ProjectMapper {
         }
     }
 
-    public void updateProject(Project project){
+    public void updateProject(int id, double hours){
         try{
             Connection conn = DBManager.getConnection();
             String SQL = "UPDATE project  SET hours =? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setDouble(1,project.getHours());
-            ps.setInt(2, project.getId());
+
+            ps.setDouble(1, hours);
+            ps.setInt(2, id);
 
             ps.executeUpdate();
 

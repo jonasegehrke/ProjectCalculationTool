@@ -17,8 +17,8 @@ public class ProjectService {
 
 
     public ArrayList renderProjectList(Model model) {
-        return projectList = projectMapper.readAllProjects();
 
+        return projectList = projectMapper.readAllProjects();
     }
 
     public void createProject(String title) {
@@ -29,6 +29,7 @@ public class ProjectService {
     }
 
     public Project findProject(int id) {
+        projectList = projectMapper.readAllProjects();
         for (int i = 0; i < projectList.size(); i++) {
             if (projectList.get(i).getId() == id) {
                 currentProjectId = projectList.get(i).getId();
