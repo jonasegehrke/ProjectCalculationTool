@@ -30,7 +30,7 @@ body{
     margin-bottom: 20px;
 }
 
-#create-project-form{
+#create-project-link{
     text-align: center;
 }
 
@@ -72,14 +72,48 @@ body{
 }
 
 .wrapper .main_content .info{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     margin: 20px;
     color: #717171;
     line-height: 25px;
 }
 
-.wrapper .main_content .info div{
+.task-card{
     margin-bottom: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    flex-basis: 32%;
+    border-radius: 6px;
+    margin: 10px;
 }
+
+.card-content{
+    padding: 8px;
+}
+
+.card-header{
+    padding: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.create-subtask-btn{
+    width: 5%;
+}
+
+.create-task-btn{
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 10px;
+    width: 15%;
+}
+
+
+
+
+
+
+
 
 /* splash screen */
 

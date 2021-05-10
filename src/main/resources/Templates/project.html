@@ -37,18 +37,23 @@
             <p th:text="${project.hours}"></p>
         </div>
         <div class="info">
-            <div>
-                <form th:action="@{/create-task}" method="post">
-                    <input type="text" name="task-title" id="task-title">
-                    <button type="submit">add task</button>
-                </form>
-                <ul>
-                    <li th:each="task: ${tasklist}">
-                        <p th:text="${task.title}"></p>
-                        <p th:text="${task.hours}"></p>
-                    </li>
-                </ul>
+            <div th:each="task: ${tasklist}" class="task-card">
+                <div class="card-header">
+                    <p th:text="${task.title}"></p>
+                    <p th:text="${task.hours}"></p>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li></li>
+                    </ul>
+                <button class="create-subtask-btn">&plus;</button>
+                </div>
             </div>
+
+            <form class="create-task" th:action="@{/create-task}" method="post">
+                <input type="text" name="task-title" id="task-title" placeholder="task title">
+                <button class="create-task-btn" type="submit">&plus;</button>
+            </form>
         </div>
     </div>
 </div>
