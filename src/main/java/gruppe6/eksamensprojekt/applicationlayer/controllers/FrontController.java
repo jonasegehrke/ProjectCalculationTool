@@ -1,6 +1,7 @@
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
 import gruppe6.eksamensprojekt.service.ProjectService;
+import gruppe6.eksamensprojekt.service.SubTaskService;
 import gruppe6.eksamensprojekt.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,9 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class FrontController {
 
-
     ProjectService projectService = new ProjectService();
     TaskService taskService = new TaskService();
+    SubTaskService subTaskService = new SubTaskService();
 
     @GetMapping(value = "/")
     public String dashboard(Model model) {
@@ -42,6 +43,7 @@ public class FrontController {
         model.addAttribute("projectlist", projectService.renderProjectList(model));
         model.addAttribute("project", projectService.findProject(id));
         model.addAttribute("tasklist", taskService.findTaskList(id));
+        model.addAttribute("subtasklist", subTaskService.findSubTaskList(taskService.findTaskList(id)));
         return "project.html";
     }
 
