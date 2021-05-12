@@ -37,7 +37,7 @@ public class FrontController {
     public String createProject(WebRequest request) {
         String title = request.getParameter("project-title");
         projectService.createProject(title);
-        return "redirect:/";
+        return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/create-task")

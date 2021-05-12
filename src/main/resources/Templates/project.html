@@ -9,8 +9,6 @@
 </head>
 <body>
 
-
-
 <div class="wrapper">
     <div class="sidebar">
         <h2>Project Calculator</h2>
@@ -27,26 +25,49 @@
     </div>
     <div class="main_content">
         <div class="header">
-            <p>Project title: </p>
-            <p th:text="${project.title}"></p>
-            <p>Hours planned: </p>
-            <p th:text="${project.hours}"></p>
+            <div class="header-info">
+                <p >Project title:</p>
+                <p th:text="${project.title}"></p>
+            </div>
+
+            <div class="header-info">
+                <p >Hours planned: </p>
+                <p th:text="${project.hours}"></p>
+            </div>
+
         </div>
         <div class="info">
             <div th:each="task: ${tasklist}" class="task-card">
                 <div class="card-header">
-                    <p th:text="${task.title}"></p>
-                    <p th:text="${task.hours}"></p>
+
+                    <div>
+                        <p class="card-inline" th:text="${task.title}"></p>
+                    </div>
+
+                    <div>
+                        <p class="card-inline" th:text="${task.hours}"></p>
+                        <p class="card-inline"> hours</p>
+                    </div>
+
                 </div>
                 <div class="card-content">
-                    <div th:each="subtask: ${subtasklist}">
-                        <div th:if="${task.id == subtask.taskId}">
-                            <p th:text="${subtask.title}"></p>
-                            <p th:text="${subtask.hours}"></p>
+
+
+                        <div th:each="subtask: ${subtasklist}">
+                            <div th:if="${task.id == subtask.taskId}">
+                                <div class="card-flex">
+                                    <div>
+                                        <p class="card-inline" th:text="${subtask.title}"></p>
+                                    </div>
+
+                                    <div>
+                                        <p class="card-inline" th:text="${subtask.hours}"></p>
+                                        <p class="card-inline"> hours</p>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
-
-                    </div>
 
                     <form th:action="@{/create-subtask(id=${task.id})}" method="post">
                         <input type="text" name="subtask-title" id="subtask-title" placeholder="subtask title">

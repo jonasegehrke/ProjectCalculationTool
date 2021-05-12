@@ -21,8 +21,10 @@ public class TaskService {
 
 
     public void createTask(String title, int currentProjectId) {
-        Task task = new Task(title, 0, currentProjectId);
-        taskMapper.createTask(task);
+        if (title.trim().length() > 0) {
+            Task task = new Task(title, 0, currentProjectId);
+            taskMapper.createTask(task);
+        }
     }
 
     public ArrayList findTaskList(int id) {

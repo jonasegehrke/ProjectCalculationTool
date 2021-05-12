@@ -22,9 +22,10 @@ public class ProjectService {
     }
 
     public void createProject(String title) {
-        if (title != null) {
+        if (title.trim().length() > 0) {
             Project project = new Project(title, 0);
             projectMapper.createProject(project);
+            currentProjectId = project.getId();
         }
     }
 
@@ -35,11 +36,8 @@ public class ProjectService {
                 currentProjectId = projectList.get(i).getId();
                 return projectList.get(i);
             }
-
         }
-        // Det sker aldrig
         return null;
-
     }
 }
 

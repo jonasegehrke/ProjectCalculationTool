@@ -69,7 +69,19 @@ body{
     background: #fff;
     color: #717171;
     border-bottom: 1px solid #e0e4e8;
+    display: flex;
+
+
 }
+
+.header p{
+    display: inline;
+}
+
+.header-info{
+    flex-basis: 50%;
+}
+
 
 .wrapper .main_content .info{
     display: flex;
@@ -95,6 +107,17 @@ body{
 .card-header{
     padding: 8px;
     border-bottom: 1px solid rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-inline{
+    display: inline;
 }
 
 .create-subtask-btn{
@@ -108,7 +131,8 @@ body{
     width: 15%;
 }
 
-.card-content p {
+
+.subtask-info{
     display: inline;
 }
 

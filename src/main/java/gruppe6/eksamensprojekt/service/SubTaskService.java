@@ -16,8 +16,10 @@ public class SubTaskService {
     double taskHours;
 
     public void createSubTask(String title, double hours, int currentTaskId) {
-        SubTask subTask = new SubTask(title, hours, currentTaskId);
-        subTaskMapper.createSubTask(subTask);
+        if (title.trim().length() > 0 || hours > 0) {
+            SubTask subTask = new SubTask(title, hours, currentTaskId);
+            subTaskMapper.createSubTask(subTask);
+        }
     }
 
 
