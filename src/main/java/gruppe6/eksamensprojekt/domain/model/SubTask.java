@@ -1,7 +1,5 @@
 package gruppe6.eksamensprojekt.domain.model;
 
-import gruppe6.eksamensprojekt.domain.interfaces.TaskDetails;
-
 public class SubTask {
 
     private int id;

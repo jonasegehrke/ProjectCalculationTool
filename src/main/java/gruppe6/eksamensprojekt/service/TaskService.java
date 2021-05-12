@@ -32,9 +32,12 @@ public class TaskService {
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getProjectId() == id) {
                 currentProjectTaskList.add(taskList.get(i));
+
+
                 projectHours += taskList.get(i).getHours();
             }
         }
+
 
         projectMapper.updateProject(id, projectHours);
         projectHours = 0;

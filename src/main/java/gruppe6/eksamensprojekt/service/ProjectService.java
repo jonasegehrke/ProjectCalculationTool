@@ -16,7 +16,7 @@ public class ProjectService {
     }
 
 
-    public ArrayList renderProjectList(Model model) {
+    public ArrayList renderProjectList() {
 
         return projectList = projectMapper.readAllProjects();
     }

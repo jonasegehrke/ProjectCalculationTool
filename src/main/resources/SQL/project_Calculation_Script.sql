@@ -28,16 +28,6 @@ FOREIGN KEY (task_id) references task(id)
 );
 
 
-/* Example */
-INSERT INTO project (title, hours) VALUES ("MyFirstProject", 7);
-
-INSERT INTO task (title, hours, project_id) VALUES ("Design", 7, 1);
-
-INSERT INTO subtask (title, hours, task_id) VALUES ("Domain Model", 4, 1);
-INSERT INTO subtask (title, hours, task_id) VALUES ("Use Cases", 3, 1);
-/* End of example */
-
-
 SELECT * FROM subtask;
 SELECT * FROM task;
 SELECT * FROM project;
