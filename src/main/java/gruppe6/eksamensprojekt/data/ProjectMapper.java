@@ -1,6 +1,7 @@
 package gruppe6.eksamensprojekt.data;
 
 import gruppe6.eksamensprojekt.domain.model.Project;
+import gruppe6.eksamensprojekt.domain.model.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,6 +45,33 @@ public class ProjectMapper {
             e.printStackTrace();
         }
 
+    }
+
+    public void deleteProject(Project project, int taskId){
+        try{
+            Connection conn = DBManager.getConnection();
+            System.out.println(taskId);
+            System.out.println(project.getId());
+
+            String SQL = "DELETE FROM subtask WHERE task_id=?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setInt(1, taskId);
+            ps.executeUpdate();
+
+            String SQL2 = "DELETE FROM task WHERE project_id=?";
+            PreparedStatement ps2 = conn.prepareStatement(SQL2);
+            ps2.setInt(1, project.getId());
+            ps2.executeUpdate();
+
+            String SQL3 = "DELETE FROM project WHERE id=?";
+            PreparedStatement ps3 = conn.prepareStatement(SQL3);
+            ps3.setInt(1, project.getId());
+            ps3.executeUpdate();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Project> readAllProjects(){

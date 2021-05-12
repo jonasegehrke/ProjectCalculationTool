@@ -23,7 +23,9 @@
             <li th:each="project: ${projectlist}">
                 <div>
                     <a th:text="${project.title}" th:href="@{/project(id=${project.id})}"></a>
-                    <button>&cross;</button>
+                    <form method="post" th:action="@{/delete-project(id=${project.id})}">
+                        <button type="submit">&cross;</button>
+                    </form>
                 </div>
             </li>
         </ul>
@@ -56,7 +58,9 @@
                         <p class="card-inline"> hours</p>
                     </div>
                     <div>
-                        <button>&cross;</button>
+                        <form method="post" th:action="@{/delete-task(id=${task.id})}">
+                            <button type="submit">&cross;</button>
+                        </form>
                     </div>
 
                 </div>
@@ -76,7 +80,10 @@
                                     </div>
 
                                     <div>
-                                        <button>&cross;</button>
+                                        <form method="post" th:action="@{/delete-subtask(id=${subtask.id})}">
+                                            <button type="submit">&cross;</button>
+                                        </form>
+
                                     </div>
 
                                 </div>

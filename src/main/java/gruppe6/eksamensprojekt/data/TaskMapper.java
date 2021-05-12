@@ -1,6 +1,7 @@
 package gruppe6.eksamensprojekt.data;
 
 import gruppe6.eksamensprojekt.domain.model.Project;
+import gruppe6.eksamensprojekt.domain.model.SubTask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 
 import java.sql.*;
@@ -45,6 +46,25 @@ public class TaskMapper {
             e.printStackTrace();
         }
 
+    }
+
+    public void deleteTask(Task task){
+        try{
+            Connection conn = DBManager.getConnection();
+
+            String SQL = "DELETE FROM subtask WHERE task_id=?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setInt(1,task.getId());
+            ps.executeUpdate();
+
+            String SQL2 = "DELETE FROM task WHERE id=?";
+            PreparedStatement ps2 = conn.prepareStatement(SQL2);
+            ps2.setInt(1, task.getId());
+            ps2.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Task> readAllTasks(){

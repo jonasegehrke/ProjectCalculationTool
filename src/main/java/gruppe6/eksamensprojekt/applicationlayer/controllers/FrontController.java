@@ -1,5 +1,6 @@
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
+import gruppe6.eksamensprojekt.service.NewService;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import gruppe6.eksamensprojekt.service.SubTaskService;
 import gruppe6.eksamensprojekt.service.TaskService;
@@ -15,43 +16,67 @@ import org.springframework.web.context.request.WebRequest;
 public class FrontController {
 
     ProjectService projectService = new ProjectService();
-    TaskService taskService = new TaskService();
-    SubTaskService subTaskService = new SubTaskService();
+
+    NewService newService = new NewService();
 
     @GetMapping(value = "/")
     public String dashboard(Model model) {
-        model.addAttribute("projectlist", projectService.renderProjectList());
+        model.addAttribute("projectlist", newService.renderProjectList());
         return "dashboard.html";
     }
 
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
-        model.addAttribute("projectlist", projectService.renderProjectList());
-        model.addAttribute("subtasklist", subTaskService.findSubTaskList(taskService.findTaskList(id)));
-        model.addAttribute("tasklist", taskService.findTaskList(id));
-        model.addAttribute("project", projectService.findProject(id));
+        model.addAttribute("projectlist", newService.renderProjectList());
+        model.addAttribute("subtasklist", newService.findSubTaskList(newService.findTaskList(id)));
+        model.addAttribute("tasklist", newService.findTaskList(id));
+        model.addAttribute("project", newService.findProject(id));
         return "project.html";
+    }
+
+    @GetMapping(value = "/updated-dashboard")
+    public String dashboardWithoutSplash(Model model) {
+        model.addAttribute("projectlist", newService.renderProjectList());
+        return "dashboard-without-splash.html";
     }
 
     @PostMapping(value = "/create-project")
     public String createProject(WebRequest request) {
         String title = request.getParameter("project-title");
-        projectService.createProject(title);
-        return "redirect:/project?id=" + projectService.getCurrentProjectId();
+        newService.createProject(title);
+        return "redirect:/project?id=" + newService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/create-task")
     public String createTask(WebRequest request) {
         String title = request.getParameter("task-title");
-        taskService.createTask(title, projectService.getCurrentProjectId());
-        return "redirect:/project?id=" + projectService.getCurrentProjectId();
+        newService.createTask(title, newService.getCurrentProjectId());
+        return "redirect:/project?id=" + newService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/create-subtask")
     public String createSubtask(@RequestParam("id") int id, WebRequest request) {
         String title = request.getParameter("subtask-title");
         double hours = Double.parseDouble(request.getParameter("subtask-hours"));
-        subTaskService.createSubTask(title,hours,id);
-        return "redirect:/project?id=" + projectService.getCurrentProjectId();
+        newService.createSubTask(title,hours,id);
+        return "redirect:/project?id=" + newService.getCurrentProjectId();
+    }
+
+    @PostMapping(value ="/delete-subtask")
+    public String deleteSubtask(@RequestParam("id") int id){
+        newService.deleteSubTask(id);
+        return "redirect:/project?id=" + newService.getCurrentProjectId();
+    }
+
+    @PostMapping(value = "/delete-task")
+    public String deleteTask(@RequestParam("id") int id){
+        newService.deleteTask(id);
+        return "redirect:/project?id=" + newService.getCurrentProjectId();
+    }
+
+    @PostMapping(value = "/delete-project")
+    public String deleteProject(@RequestParam("id") int id){
+        newService.deleteProject(id);
+        return "redirect:/updated-dashboard";
     }
 }

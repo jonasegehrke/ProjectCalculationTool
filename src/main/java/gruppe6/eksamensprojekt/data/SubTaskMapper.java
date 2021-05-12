@@ -30,7 +30,7 @@ public class SubTaskMapper {
         }
     }
 
-    public void updateTask(SubTask subTask) {
+    public void updateSubTask(SubTask subTask) {
         try {
             Connection conn = DBManager.getConnection();
             String SQL = "UPDATE subtask  SET hours =? WHERE id=?";
@@ -45,6 +45,21 @@ public class SubTaskMapper {
             e.printStackTrace();
         }
 
+    }
+
+    public void deleteSubTask(SubTask subTask){
+        try{
+            Connection conn = DBManager.getConnection();
+            String SQL = "DELETE FROM subtask WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.setInt(1, subTask.getId());
+
+            ps.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<SubTask> readAllSubTasks() {
