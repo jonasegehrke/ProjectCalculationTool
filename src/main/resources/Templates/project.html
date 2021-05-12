@@ -14,23 +14,29 @@
         <h2>Project Calculator</h2>
         <form id="create-project-form" th:action="@{/create-project}" method="post">
             <input type="text" name="project-title" id="project-title" placeholder="enter project name">
-            <button type="submit" name="create-project" id="create-project-btn">addIcon</button>
+            <button type="submit" name="create-project" id="create-project-btn">&plus;</button>
         </form>
 
+
         <ul>
+
             <li th:each="project: ${projectlist}">
-                <a th:text="${project.title}" th:href="@{/project(id=${project.id})}"></a>
+                <div>
+                    <a th:text="${project.title}" th:href="@{/project(id=${project.id})}"></a>
+                    <button>&cross;</button>
+                </div>
             </li>
         </ul>
+
     </div>
     <div class="main_content">
         <div class="header">
-            <div class="header-info">
+            <div>
                 <p >Project title:</p>
                 <p th:text="${project.title}"></p>
             </div>
 
-            <div class="header-info">
+            <div>
                 <p >Hours planned: </p>
                 <p th:text="${project.hours}"></p>
             </div>
@@ -38,6 +44,7 @@
         </div>
         <div class="info">
             <div th:each="task: ${tasklist}" class="task-card">
+
                 <div class="card-header">
 
                     <div>
@@ -47,6 +54,9 @@
                     <div>
                         <p class="card-inline" th:text="${task.hours}"></p>
                         <p class="card-inline"> hours</p>
+                    </div>
+                    <div>
+                        <button>&cross;</button>
                     </div>
 
                 </div>
@@ -65,6 +75,10 @@
                                         <p class="card-inline"> hours</p>
                                     </div>
 
+                                    <div>
+                                        <button>&cross;</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -79,10 +93,34 @@
                 </div>
             </div>
 
-            <form class="create-task" th:action="@{/create-task}" method="post">
-                <input type="text" name="task-title" id="task-title" placeholder="task title">
-                <button class="create-task-btn" type="submit">&plus;</button>
-            </form>
+
+
+            <div class="task-card">
+                <div class="card-header">
+                    <form class="create-task" th:action="@{/create-task}" method="post">
+                    <div>
+                        <input type="text" name="task-title" id="task-title" placeholder="create new task">
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </div>
+                <div class="card-content">
+                    <button class="create-task-btn" type="submit">&plus;</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
