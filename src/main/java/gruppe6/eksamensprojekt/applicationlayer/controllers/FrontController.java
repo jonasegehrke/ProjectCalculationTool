@@ -23,9 +23,9 @@ public class FrontController {
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
         model.addAttribute("projectlist", projectService.renderProjectList());
-        model.addAttribute("subtasklist", projectService.findSubtaskList(projectService.findTaskList(id)));
-        model.addAttribute("tasklist", projectService.findTaskList(id));
-        model.addAttribute("project", projectService.findProject(id));
+        model.addAttribute("subtasklist", projectService.readSubtaskList(projectService.readTaskList(id)));
+        model.addAttribute("tasklist", projectService.readTaskList(id));
+        model.addAttribute("project", projectService.readProject(id));
         return "project.html";
     }
 

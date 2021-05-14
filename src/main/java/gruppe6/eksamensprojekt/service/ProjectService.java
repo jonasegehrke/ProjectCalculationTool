@@ -42,7 +42,7 @@ public class ProjectService {
         }
     }
 
-    public Project findProject(int id) {
+    public Project readProject(int id) {
         projectList = projectMapper.readAllProjects();
         for (int i = 0; i < projectList.size(); i++) {
             if (projectList.get(i).getId() == id) {
@@ -61,7 +61,7 @@ public class ProjectService {
 
         int taskId = 0;
 
-        findTaskList(id);
+        readTaskList(id);
 
 
         for(int i = 0; i < taskList.size(); i++){
@@ -86,7 +86,7 @@ public class ProjectService {
         }
     }
 
-    public ArrayList findTaskList(int id) {
+    public ArrayList readTaskList(int id) {
 
         taskList = taskMapper.readAllTasks();
         currentTaskList = new ArrayList<>();
@@ -120,7 +120,7 @@ public class ProjectService {
         }
     }
 
-    public ArrayList findSubtaskList(ArrayList<Task> currentProjectTaskList) {
+    public ArrayList readSubtaskList(ArrayList<Task> currentProjectTaskList) {
         subtaskList = subtaskMapper.readAllSubtasks();
         currentSubtaskList = new ArrayList<>();
 
