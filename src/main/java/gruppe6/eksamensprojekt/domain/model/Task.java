@@ -8,7 +8,7 @@ public class Task {
     private String title;
     private double hours;
     private int projectId;
-    private ArrayList<SubTask> subTasks;
+    private ArrayList<Subtask> subtasks;
 
     public Task(String title, double hours, int projectId) {
         this.title = title;
@@ -16,12 +16,12 @@ public class Task {
         this.projectId = projectId;
     }
 
-    public void addSubTask(SubTask subTask){
-        subTasks.add(subTask);
+    public void addSubTask(Subtask subTask){
+        subtasks.add(subTask);
     }
 
-    public ArrayList<SubTask> getSubTasks() {
-        return subTasks;
+    public ArrayList<Subtask> getSubTasks() {
+        return subtasks;
     }
 
     public int getId() {

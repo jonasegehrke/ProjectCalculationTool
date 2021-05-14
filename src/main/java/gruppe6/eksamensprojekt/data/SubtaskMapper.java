@@ -1,43 +1,42 @@
 package gruppe6.eksamensprojekt.data;
 
-import gruppe6.eksamensprojekt.domain.model.SubTask;
-import gruppe6.eksamensprojekt.domain.model.Task;
+import gruppe6.eksamensprojekt.domain.model.Subtask;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class SubTaskMapper {
+public class SubtaskMapper {
 
-    public void createSubTask(SubTask subTask) {
+    public void createSubtask(Subtask subtask) {
         try {
             Connection conn = DBManager.getConnection();
             String SQL = "INSERT INTO subtask (title, hours, task_id) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setString(1, subTask.getTitle());
-            ps.setDouble(2, subTask.getHours());
-            ps.setInt(3, subTask.getTaskId());
+            ps.setString(1, subtask.getTitle());
+            ps.setDouble(2, subtask.getHours());
+            ps.setInt(3, subtask.getTaskId());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             rs.next();
             int id = rs.getInt(1);
-            subTask.setId(id);
+            subtask.setId(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSubTask(SubTask subTask) {
+    public void updateSubtask(Subtask subtask) {
         try {
             Connection conn = DBManager.getConnection();
             String SQL = "UPDATE subtask  SET hours =? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(SQL);
 
-            ps.setDouble(1, subTask.getHours());
-            ps.setInt(2, subTask.getId());
+            ps.setDouble(1, subtask.getHours());
+            ps.setInt(2, subtask.getId());
 
             ps.executeUpdate();
 
@@ -47,13 +46,13 @@ public class SubTaskMapper {
 
     }
 
-    public void deleteSubTask(SubTask subTask){
+    public void deleteSubtask(Subtask subtask){
         try{
             Connection conn = DBManager.getConnection();
             String SQL = "DELETE FROM subtask WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(SQL);
 
-            ps.setInt(1, subTask.getId());
+            ps.setInt(1, subtask.getId());
 
             ps.executeUpdate();
 
@@ -62,8 +61,8 @@ public class SubTaskMapper {
         }
     }
 
-    public ArrayList<SubTask> readAllSubTasks() {
-        ArrayList<SubTask> list = new ArrayList<>();
+    public ArrayList<Subtask> readAllSubtasks() {
+        ArrayList<Subtask> list = new ArrayList<>();
 
         try {
             Connection conn = DBManager.getConnection();
@@ -77,9 +76,9 @@ public class SubTaskMapper {
                 String title = rs.getString(2);
                 double hours = rs.getDouble(3);
                 int taskId = rs.getInt(4);
-                SubTask subTask = new SubTask(title, hours, taskId);
-                subTask.setId(id);
-                list.add(subTask);
+                Subtask subtask = new Subtask(title, hours, taskId);
+                subtask.setId(id);
+                list.add(subtask);
             }
 
         } catch (SQLException e) {

@@ -1,13 +1,13 @@
 package gruppe6.eksamensprojekt.domain.model;
 
-public class SubTask {
+public class Subtask {
 
     private int id;
     private String title;
     private double hours;
     private int taskId;
 
-    public SubTask(String title, double hours, int taskId) {
+    public Subtask(String title, double hours, int taskId) {
         this.title = title;
         this.hours = hours;
         this.taskId = taskId;

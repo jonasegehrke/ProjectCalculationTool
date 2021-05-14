@@ -23,7 +23,7 @@ public class FrontController {
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
         model.addAttribute("projectlist", projectService.renderProjectList());
-        model.addAttribute("subtasklist", projectService.findSubTaskList(projectService.findTaskList(id)));
+        model.addAttribute("subtasklist", projectService.findSubtaskList(projectService.findTaskList(id)));
         model.addAttribute("tasklist", projectService.findTaskList(id));
         model.addAttribute("project", projectService.findProject(id));
         return "project.html";
@@ -53,13 +53,13 @@ public class FrontController {
     public String createSubtask(@RequestParam("id") int id, WebRequest request) {
         String title = request.getParameter("subtask-title");
         double hours = Double.parseDouble(request.getParameter("subtask-hours"));
-        projectService.createSubTask(title,hours,id);
+        projectService.createSubtask(title,hours,id);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value ="/delete-subtask")
     public String deleteSubtask(@RequestParam("id") int id){
-        projectService.deleteSubTask(id);
+        projectService.deleteSubtask(id);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 

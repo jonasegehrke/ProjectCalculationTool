@@ -1,10 +1,10 @@
 package gruppe6.eksamensprojekt.service;
 
 import gruppe6.eksamensprojekt.data.ProjectMapper;
-import gruppe6.eksamensprojekt.data.SubTaskMapper;
+import gruppe6.eksamensprojekt.data.SubtaskMapper;
 import gruppe6.eksamensprojekt.data.TaskMapper;
 import gruppe6.eksamensprojekt.domain.model.Project;
-import gruppe6.eksamensprojekt.domain.model.SubTask;
+import gruppe6.eksamensprojekt.domain.model.Subtask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ public class ProjectService {
     // Task
     TaskMapper taskMapper = new TaskMapper();
     ArrayList<Task> taskList;
-    ArrayList<Task> currentProjectTaskList;
+    ArrayList<Task> currentTaskList;
     double projectHours;
 
     // Subtask
-    SubTaskMapper subTaskMapper = new SubTaskMapper();
-    ArrayList<SubTask> subTaskList;
-    ArrayList<SubTask> currentSubTaskList;
+    SubtaskMapper subtaskMapper = new SubtaskMapper();
+    ArrayList<Subtask> subtaskList;
+    ArrayList<Subtask> currentSubtaskList;
     double taskHours;
 
 
@@ -89,10 +89,10 @@ public class ProjectService {
     public ArrayList findTaskList(int id) {
 
         taskList = taskMapper.readAllTasks();
-        currentProjectTaskList = new ArrayList<>();
+        currentTaskList = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getProjectId() == id) {
-                currentProjectTaskList.add(taskList.get(i));
+                currentTaskList.add(taskList.get(i));
                 projectHours += taskList.get(i).getHours();
             }
         }
@@ -101,38 +101,34 @@ public class ProjectService {
         projectMapper.updateProject(id, projectHours);
         projectHours = 0;
 
-        return currentProjectTaskList;
+        return currentTaskList;
     }
 
     public void deleteTask(int id){
-        for(int i = 0; i < currentProjectTaskList.size(); i++){
-            if(currentProjectTaskList.get(i).getId() == id){
-                taskMapper.deleteTask(currentProjectTaskList.get(i));
+        for(int i = 0; i < currentTaskList.size(); i++){
+            if(currentTaskList.get(i).getId() == id){
+                taskMapper.deleteTask(currentTaskList.get(i));
             }
         }
     }
 
-    public ArrayList<Task> getCurrentProjectTaskList() {
-        return currentProjectTaskList;
-    }
-
     // Subtask
-    public void createSubTask(String title, double hours, int currentTaskId) {
+    public void createSubtask(String title, double hours, int currentTaskId) {
         if (title.trim().length() > 0 || hours > 0) {
-            SubTask subTask = new SubTask(title, hours, currentTaskId);
-            subTaskMapper.createSubTask(subTask);
+            Subtask subtask = new Subtask(title, hours, currentTaskId);
+            subtaskMapper.createSubtask(subtask);
         }
     }
 
-    public ArrayList findSubTaskList(ArrayList<Task> currentProjectTaskList) {
-        subTaskList = subTaskMapper.readAllSubTasks();
-        currentSubTaskList = new ArrayList<>();
+    public ArrayList findSubtaskList(ArrayList<Task> currentProjectTaskList) {
+        subtaskList = subtaskMapper.readAllSubtasks();
+        currentSubtaskList = new ArrayList<>();
 
         for (int i = 0; i < currentProjectTaskList.size(); i++) {
-            for(int j = 0; j < subTaskList.size(); j++){
-                if (currentProjectTaskList.get(i).getId()==subTaskList.get(j).getTaskId()){
-                    currentSubTaskList.add(subTaskList.get(j));
-                    taskHours += subTaskList.get(j).getHours();
+            for(int j = 0; j < subtaskList.size(); j++){
+                if (currentProjectTaskList.get(i).getId()== subtaskList.get(j).getTaskId()){
+                    currentSubtaskList.add(subtaskList.get(j));
+                    taskHours += subtaskList.get(j).getHours();
                 }
             }
             currentProjectTaskList.get(i).setHours(taskHours);
@@ -141,13 +137,13 @@ public class ProjectService {
         }
 
 
-        return currentSubTaskList;
+        return currentSubtaskList;
     }
 
-    public void deleteSubTask(int id){
-        for(int i = 0; i < currentSubTaskList.size(); i++){
-            if(currentSubTaskList.get(i).getId() == id){
-                subTaskMapper.deleteSubTask(currentSubTaskList.get(i));
+    public void deleteSubtask(int id){
+        for(int i = 0; i < currentSubtaskList.size(); i++){
+            if(currentSubtaskList.get(i).getId() == id){
+                subtaskMapper.deleteSubtask(currentSubtaskList.get(i));
             }
         }
     }

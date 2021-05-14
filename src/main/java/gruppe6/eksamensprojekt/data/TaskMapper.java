@@ -1,7 +1,5 @@
 package gruppe6.eksamensprojekt.data;
 
-import gruppe6.eksamensprojekt.domain.model.Project;
-import gruppe6.eksamensprojekt.domain.model.SubTask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 
 import java.sql.*;
