@@ -120,19 +120,19 @@ public class ProjectService {
         }
     }
 
-    public ArrayList readSubtaskList(ArrayList<Task> currentProjectTaskList) {
+    public ArrayList readSubtaskList(ArrayList<Task> currentTaskList) {
         subtaskList = subtaskMapper.readAllSubtasks();
         currentSubtaskList = new ArrayList<>();
 
-        for (int i = 0; i < currentProjectTaskList.size(); i++) {
+        for (int i = 0; i < currentTaskList.size(); i++) {
             for(int j = 0; j < subtaskList.size(); j++){
-                if (currentProjectTaskList.get(i).getId()== subtaskList.get(j).getTaskId()){
+                if (currentTaskList.get(i).getId()== subtaskList.get(j).getTaskId()){
                     currentSubtaskList.add(subtaskList.get(j));
                     taskHours += subtaskList.get(j).getHours();
                 }
             }
-            currentProjectTaskList.get(i).setHours(taskHours);
-            taskMapper.updateTask(currentProjectTaskList.get(i));
+            currentTaskList.get(i).setHours(taskHours);
+            taskMapper.updateTask(currentTaskList.get(i));
             taskHours = 0;
         }
 
