@@ -11,7 +11,7 @@
 
 <div class="wrapper">
     <div class="sidebar">
-        <h2>Project Calculator</h2>
+        <a th:href="@{/}"><h2>Project Calculator</h2></a>
         <form id="create-project-form" th:action="@{/create-project}" method="post">
             <input type="text" name="project-title" id="project-title" placeholder="enter project name">
             <button type="submit" name="create-project" id="create-project-btn">&plus;</button>

@@ -10,6 +10,10 @@ body{
     background: #f3f5f9;
 }
 
+a{
+    color: inherit;
+}
+
 .wrapper{
     display: flex;
     position: relative;
