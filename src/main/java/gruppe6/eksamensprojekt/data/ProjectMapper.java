@@ -50,18 +50,22 @@ public class ProjectMapper {
     public void deleteProject(Project project, int taskId){
         try{
             Connection conn = DBManager.getConnection();
-            System.out.println(taskId);
-            System.out.println(project.getId());
 
             String SQL = "DELETE FROM subtask WHERE task_id=?";
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setInt(1, taskId);
             ps.executeUpdate();
 
+            PreparedStatement test = conn.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
+            test.executeUpdate();
+
             String SQL2 = "DELETE FROM task WHERE project_id=?";
             PreparedStatement ps2 = conn.prepareStatement(SQL2);
             ps2.setInt(1, project.getId());
             ps2.executeUpdate();
+
+            PreparedStatement test2 = conn.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
+            test2.executeUpdate();
 
             String SQL3 = "DELETE FROM project WHERE id=?";
             PreparedStatement ps3 = conn.prepareStatement(SQL3);

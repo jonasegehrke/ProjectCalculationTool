@@ -24,11 +24,13 @@ public class FrontController {
 
     @GetMapping(value = "/project")
     public String readProject(@RequestParam("id") int id, Model model) {
+        model.addAttribute("employeelist", employeeService.readEmployeeList());
         model.addAttribute("projectlist", projectService.renderProjectList());
         model.addAttribute("subtasklist", projectService.readSubtaskList(projectService.readTaskList(id)));
         model.addAttribute("tasklist", projectService.readTaskList(id));
         model.addAttribute("project", projectService.readProject(id));
-        model.addAttribute("employeelist", employeeService.readEmployeeList());
+
+
         return "project.html";
     }
 
@@ -76,20 +78,23 @@ public class FrontController {
     }
 
     @PostMapping(value ="/delete-subtask")
-    public String deleteSubtask(@RequestParam("id") int id){
+    public String deleteSubtask(@RequestParam("id") int id) throws Exception {
         projectService.deleteSubtask(id);
+
+        employeeService.deductHoursFromEmployee(projectService.getEmployeeIdFromSubtask(id), projectService.getSubtaskHours(id));
+
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/delete-task")
-    public String deleteTask(@RequestParam("id") int id){
-        projectService.deleteTask(id);
+    public String deleteTask(@RequestParam("id") int id) throws Exception {
+        projectService.deleteTask(id, employeeService);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/delete-project")
-    public String deleteProject(@RequestParam("id") int id){
-        projectService.deleteProject(id);
+    public String deleteProject(@RequestParam("id") int id) throws Exception {
+        projectService.deleteProject(id, employeeService);
         return "redirect:/updated-dashboard";
     }
 

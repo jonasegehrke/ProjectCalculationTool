@@ -28,7 +28,17 @@ public class EmployeeService {
             if(employeeList.get(i).getId() == employeeId){
                 double previousHours = employeeList.get(i).getPlannedHours();
                 employeeList.get(i).setPlannedHours(previousHours + hours);
-                employeeMapper.addHoursToEmployee(employeeList.get(i));
+                employeeMapper.editEmployeeHours(employeeList.get(i));
+            }
+        }
+    }
+
+    public void deductHoursFromEmployee(int employeeId, double hours){
+        for(int i = 0; i < employeeList.size(); i++){
+            if(employeeList.get(i).getId() == employeeId){
+                double previousHours = employeeList.get(i).getPlannedHours();
+                employeeList.get(i).setPlannedHours(previousHours - hours);
+                employeeMapper.editEmployeeHours(employeeList.get(i));
             }
         }
     }

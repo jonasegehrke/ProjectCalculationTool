@@ -59,7 +59,7 @@ public class EmployeeMapper {
         return list;
     }
 
-    public void addHoursToEmployee(Employee employee){
+    public void editEmployeeHours(Employee employee){
         try{
             Connection conn = DBManager.getConnection();
             String SQL = "UPDATE employee  SET planned_hours =? WHERE id=?";

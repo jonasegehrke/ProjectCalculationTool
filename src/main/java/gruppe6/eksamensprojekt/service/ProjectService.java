@@ -57,12 +57,20 @@ public class ProjectService {
         return currentProjectId;
     }
 
-    public void deleteProject(int id){
+    public void deleteProject(int id, EmployeeService employeeService) throws Exception {
+
+        for(int i = 0; i < currentTaskList.size(); i++){
+            if(currentTaskList.get(i).getProjectId() == id){
+                for(int j = 0; j < currentSubtaskList.size(); j++){
+                    if(currentSubtaskList.get(j).getTaskId() == currentTaskList.get(i).getId()){
+                        employeeService.deductHoursFromEmployee(getEmployeeIdFromSubtask(currentSubtaskList.get(j).getId()), currentSubtaskList.get(j).getHours());
+                    }
+                }
+            }
+        }
 
         int taskId = 0;
-
         readTaskList(id);
-
 
         for(int i = 0; i < taskList.size(); i++){
             if(taskList.get(i).getProjectId() == id){
@@ -104,13 +112,25 @@ public class ProjectService {
         return currentTaskList;
     }
 
-    public void deleteTask(int id){
+    public void deleteTask(int id, EmployeeService employeeService) throws Exception {
         for(int i = 0; i < currentTaskList.size(); i++){
             if(currentTaskList.get(i).getId() == id){
                 taskMapper.deleteTask(currentTaskList.get(i));
+
+                for(int j = 0; j < currentSubtaskList.size(); j++){
+                    if(currentSubtaskList.get(j).getTaskId() == id){
+                        employeeService.deductHoursFromEmployee(getEmployeeIdFromSubtask(currentSubtaskList.get(j).getId()), currentSubtaskList.get(j).getHours());
+                    }
+                }
+
             }
         }
     }
+
+
+
+
+
 
     // Subtask
     public void createSubtask(String title, double hours, int currentTaskId) {
@@ -154,6 +174,24 @@ public class ProjectService {
                 subtaskMapper.assignEmployeeToSubtask(currentSubtaskList.get(i), employeeId);
             }
         }
+    }
+
+    public int getEmployeeIdFromSubtask(int id) throws Exception {
+        for(int i = 0; i < subtaskList.size(); i++){
+            if(subtaskList.get(i).getId() == id){
+                return subtaskList.get(i).getEmployeeId();
+            }
+        }
+        throw new Exception();
+    }
+
+    public double getSubtaskHours(int id) throws Exception {
+        for(int i = 0; i < subtaskList.size(); i++){
+            if(subtaskList.get(i).getId() == id){
+                return subtaskList.get(i).getHours();
+            }
+        }
+        throw new Exception();
     }
 
 
