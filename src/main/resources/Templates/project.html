@@ -80,6 +80,25 @@
                                     </div>
 
                                     <div>
+                                        <div th:each="employee: ${employeelist}">
+                                            <div th:if="${subtask.employeeId == employee.id}">
+                                                <p class="card-inline" th:text="${employee.empName}">test</p>
+                                            </div>
+                                        </div>
+
+                                        <div th:if="${subtask.employeeId == 0}">
+                                        <form th:action="@{/assign-employee(subtaskId=${subtask.id})}" method="post">
+                                            <select name="employeeId" onchange="this.form.submit()">
+                                                <option value="" disabled selected>Select</option>
+                                                <div th:each="employee: ${employeelist}">
+                                                    <option th:text="${employee.empName}" th:value="${employee.id}" ></option>
+                                                </div>
+                                            </select>
+                                        </form>
+                                        </div>
+                                    </div>
+
+                                    <div>
                                         <form method="post" th:action="@{/delete-subtask(id=${subtask.id})}">
                                             <button type="submit">&cross;</button>
                                         </form>

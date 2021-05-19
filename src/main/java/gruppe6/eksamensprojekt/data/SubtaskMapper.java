@@ -76,8 +76,11 @@ public class SubtaskMapper {
                 String title = rs.getString(2);
                 double hours = rs.getDouble(3);
                 int taskId = rs.getInt(4);
+                int employeeId = rs.getInt(5);
+
                 Subtask subtask = new Subtask(title, hours, taskId);
                 subtask.setId(id);
+                subtask.setEmployeeId(employeeId);
                 list.add(subtask);
             }
 

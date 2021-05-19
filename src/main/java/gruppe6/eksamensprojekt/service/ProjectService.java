@@ -149,7 +149,11 @@ public class ProjectService {
     }
 
     public void assignEmployeeToSubtask(int subtaskId, int employeeId){
-
+        for(int i = 0; i < currentSubtaskList.size(); i++){
+            if(currentSubtaskList.get(i).getId() == subtaskId){
+                subtaskMapper.assignEmployeeToSubtask(currentSubtaskList.get(i), employeeId);
+            }
+        }
     }
 
 }

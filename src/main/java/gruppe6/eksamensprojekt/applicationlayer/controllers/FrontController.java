@@ -28,6 +28,7 @@ public class FrontController {
         model.addAttribute("subtasklist", projectService.readSubtaskList(projectService.readTaskList(id)));
         model.addAttribute("tasklist", projectService.readTaskList(id));
         model.addAttribute("project", projectService.readProject(id));
+        model.addAttribute("employeelist", employeeService.readEmployeeList());
         return "project.html";
     }
 
@@ -90,5 +91,12 @@ public class FrontController {
     public String deleteProject(@RequestParam("id") int id){
         projectService.deleteProject(id);
         return "redirect:/updated-dashboard";
+    }
+
+    @PostMapping(value = "/assign-employee")
+    public String assignEmployee(@RequestParam("subtaskId") int subtaskId, @RequestParam("employeeId") int employeeId){
+        projectService.assignEmployeeToSubtask(subtaskId,employeeId);
+
+        return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 }

@@ -6,7 +6,7 @@ public class Subtask {
     private String title;
     private double hours;
     private int taskId;
-    private int employeeId;
+    private int employeeId = 0;
 
     public Subtask(String title, double hours, int taskId) {
         this.title = title;
