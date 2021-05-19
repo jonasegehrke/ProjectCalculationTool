@@ -94,9 +94,9 @@ public class FrontController {
     }
 
     @PostMapping(value = "/assign-employee")
-    public String assignEmployee(@RequestParam("subtaskId") int subtaskId, @RequestParam("employeeId") int employeeId){
+    public String assignEmployee(@RequestParam("subtaskId") int subtaskId, @RequestParam("hours") double hours, @RequestParam("employeeId") int employeeId){
         projectService.assignEmployeeToSubtask(subtaskId,employeeId);
-
+        employeeService.addHoursToEmployee(employeeId,hours);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 }

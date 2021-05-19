@@ -59,4 +59,20 @@ public class EmployeeMapper {
         return list;
     }
 
+    public void addHoursToEmployee(Employee employee){
+        try{
+            Connection conn = DBManager.getConnection();
+            String SQL = "UPDATE employee  SET planned_hours =? WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.setDouble(1, employee.getPlannedHours());
+            ps.setInt(2, employee.getId());
+
+            ps.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 }

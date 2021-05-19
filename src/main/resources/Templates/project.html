@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div th:if="${subtask.employeeId == 0}">
-                                        <form th:action="@{/assign-employee(subtaskId=${subtask.id})}" method="post">
+                                        <form th:action="@{/assign-employee(subtaskId=${subtask.id}, hours=${subtask.hours})}" method="post">
                                             <select name="employeeId" onchange="this.form.submit()">
                                                 <option value="" disabled selected>Select</option>
                                                 <div th:each="employee: ${employeelist}">
