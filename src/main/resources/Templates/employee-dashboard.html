@@ -31,6 +31,23 @@
         <a href="/employee-dashboard">create employee</a>
     </div>
     <div class="main_content">
+        <form th:action="@{/create-employee}" method="post">
+            <input type="text" name="emp-name" placeholder="Name">
+            <input type="text" name="job-title" placeholder="Job title">
+            <button type="submit">Submit</button>
+        </form>
+
+        <br>
+        <ul>
+            <li th:each="employee : ${employeelist}">
+                <div>
+                    <p th:text="${employee.empName}"></p>
+                    <p th:text="${employee.jobTitle}"></p>
+                    <p th:text="${employee.plannedHours}"></p>
+                    <br>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 

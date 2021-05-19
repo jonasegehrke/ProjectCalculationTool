@@ -6,6 +6,7 @@ public class Subtask {
     private String title;
     private double hours;
     private int taskId;
+    private int employeeId;
 
     public Subtask(String title, double hours, int taskId) {
         this.title = title;
@@ -45,4 +46,11 @@ public class Subtask {
         this.hours = hours;
     }
 
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 }

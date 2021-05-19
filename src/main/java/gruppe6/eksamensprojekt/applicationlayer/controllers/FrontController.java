@@ -1,5 +1,6 @@
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
+import gruppe6.eksamensprojekt.service.EmployeeService;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 public class FrontController {
 
     ProjectService projectService = new ProjectService();
+    EmployeeService employeeService = new EmployeeService();
 
     @GetMapping(value = "/")
     public String dashboard(Model model) {
@@ -33,6 +35,21 @@ public class FrontController {
     public String dashboardWithoutSplash(Model model) {
         model.addAttribute("projectlist", projectService.renderProjectList());
         return "dashboard-without-splash.html";
+    }
+
+    @GetMapping(value = "/employee-dashboard")
+    public String createEmployee(Model model) {
+        model.addAttribute("projectlist", projectService.renderProjectList());
+        model.addAttribute("employeelist", employeeService.readEmployeeList());
+        return "employee-dashboard.html";
+    }
+
+    @PostMapping(value = "/create-employee")
+    public String createEmployee(WebRequest request){
+        String empName = request.getParameter("emp-name");
+        String jobTitle = request.getParameter("job-title");
+        employeeService.createEmployee(empName, jobTitle);
+        return "redirect:/employee-dashboard";
     }
 
     @PostMapping(value = "/create-project")

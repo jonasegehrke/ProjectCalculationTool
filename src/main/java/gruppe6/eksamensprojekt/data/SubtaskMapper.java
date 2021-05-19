@@ -29,13 +29,13 @@ public class SubtaskMapper {
         }
     }
 
-    public void updateSubtask(Subtask subtask) {
+    public void assignEmployeeToSubtask(Subtask subtask, int employeeId) {
         try {
             Connection conn = DBManager.getConnection();
-            String SQL = "UPDATE subtask  SET hours =? WHERE id=?";
+            String SQL = "UPDATE subtask  SET employee_id =? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(SQL);
 
-            ps.setDouble(1, subtask.getHours());
+            ps.setInt(1, employeeId);
             ps.setInt(2, subtask.getId());
 
             ps.executeUpdate();
