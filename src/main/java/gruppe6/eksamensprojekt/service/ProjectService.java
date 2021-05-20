@@ -68,19 +68,17 @@ public class ProjectService {
                 }
             }
         }
-
-        int taskId = 0;
         readTaskList(id);
-
+ArrayList taskIdList = new ArrayList();
         for(int i = 0; i < taskList.size(); i++){
             if(taskList.get(i).getProjectId() == id){
-                taskId = taskList.get(i).getId();
+                taskIdList.add(taskList.get(i).getId());
             }
         }
 
         for(int i = 0; i < projectList.size(); i++){
             if(projectList.get(i).getId() == id){
-                projectMapper.deleteProject(projectList.get(i),taskId);
+                projectMapper.deleteProject(projectList.get(i),taskIdList);
             }
         }
     }
