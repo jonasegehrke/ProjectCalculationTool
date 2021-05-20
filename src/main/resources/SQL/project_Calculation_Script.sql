@@ -1,3 +1,4 @@
+Drop schema if exists project_calculator;
 CREATE SCHEMA project_calculator;
 USE project_calculator;
 
