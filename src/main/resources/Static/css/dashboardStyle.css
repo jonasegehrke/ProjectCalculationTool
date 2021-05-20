@@ -39,10 +39,21 @@ a{
     text-align: center;
 }
 
-#create-project-btn{
+.center-form{
+    text-align: center;
+}
+
+.plus-button{
+    font-size: 20px;
     color: #bdb8d7;
-    display: block;
-    padding: 15px;
+}
+
+#create-project-form h4{
+    color: #bdb8d7;
+}
+
+.center-form input{
+    margin: 10px;
 }
 
 .wrapper .sidebar ul li{
@@ -140,12 +151,26 @@ a{
     width: 15%;
 }
 
+.create-task{
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-task-header{
+    padding: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
 
 .subtask-info{
     display: inline;
 }
 
 
+
+.plus-task-button{
+    font-size: 20px;
+}
 
 
 
@@ -209,10 +234,8 @@ a{
 }
 
 .employee-navbar a {
-    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    color: #bdb8d7;
     display: block;
     transition: 0.3s;
 }
@@ -241,10 +264,6 @@ a{
     color: #bdb8d7;
 }
 
-.employee-content{
-    margin: 10px;
-}
-
 .employee-content h4{
     color: #bdb8d7;
     text-align: center;
@@ -253,12 +272,12 @@ a{
 .employee-info{
     border-bottom: 1px solid rgba(0,0,0,0.05);
     border-top: 1px solid rgba(225,225,225,0.05);
+    text-align: center;
+    padding: 5px;
 }
 
 
-.employee-content h4, input, button{
-    margin-bottom: 5px;
-}
+
 
 
 @media screen and (max-height: 450px) {

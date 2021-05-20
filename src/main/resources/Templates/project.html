@@ -17,10 +17,10 @@
         <div class="employee-content">
 
             <h4>Create Employee</h4>
-        <form th:action="@{/create-employee}" method="post">
+        <form id="create-employee-form" class="center-form" th:action="@{/create-employee}" method="post">
             <input type="text" name="emp-name" placeholder="Name">
             <input type="text" name="job-title" placeholder="Job title">
-            <button type="submit" class="create-employee-btn">Submit</button>
+            <a class="plus-button" href="javascript:{}" onclick="document.getElementById('create-employee-form').submit();">&plus;</a>
         </form>
 
         <ul>
@@ -29,8 +29,8 @@
                     <p th:text="${employee.empName}"></p>
                     <p th:text="${employee.jobTitle}"></p>
                     <p class="card-inline" th:text="${employee.plannedHours}"></p><p class="card-inline"> hours</p>
-                    <form method="post" th:action="@{/delete-employee(id=${employee.id})}">
-                        <button type="submit">&cross;</button>
+                    <form id="delete-employee-form" method="post" th:action="@{/delete-employee(id=${employee.id})}">
+                        <a href="javascript:{}" onclick="document.getElementById('delete-employee-form').submit();">&cross;</a>
                     </form>
                 </div>
             </li>
@@ -74,8 +74,8 @@
                         <p class="card-inline"> hours</p>
                     </div>
                     <div>
-                        <form method="post"  th:action="@{/delete-task(id=${task.id})}">
-                            <button type="submit">&cross;</button>
+                        <form id="delete-task-form" method="post"  th:action="@{/delete-task(id=${task.id})}">
+                            <a href="javascript:{}" onclick="document.getElementById('delete-task-form').submit();">&cross;</a>
                         </form>
                     </div>
 
@@ -115,8 +115,8 @@
                                     </div>
 
                                     <div>
-                                        <form method="post" th:action="@{/delete-subtask(id=${subtask.id})}">
-                                            <button type="submit">&cross;</button>
+                                        <form id="delete-subtask-form" method="post" th:action="@{/delete-subtask(id=${subtask.id})}">
+                                            <a href="javascript:{}" onclick="document.getElementById('delete-subtask-form').submit();">&cross;</a>
                                         </form>
 
                                     </div>
@@ -125,11 +125,11 @@
                             </div>
                         </div>
 
-                    <form th:action="@{/create-subtask(id=${task.id})}" method="post">
+                    <form id="create-subtask-form" th:action="@{/create-subtask(id=${task.id})}" method="post">
                         <input type="text" name="subtask-title" id="subtask-title"  placeholder="subtask title">
                         <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="subtask hours">
 
-                        <button type ="submit" class="create-subtask-btn" id="create-subtask">&plus;</button>
+                        <a class="plus-task-button" href="javascript:{}" onclick="document.getElementById('create-subtask-form').submit();">&plus;</a>
                     </form>
 
                 </div>
@@ -139,20 +139,19 @@
 
 
             <div class="task-card">
-                <div class="card-header">
-                    <form class="create-task" th:action="@{/create-task}" method="post">
+                <div class="create-task-header">
+                    <form id="create-task-form" class="create-task" th:action="@{/create-task}" method="post">
                     <div>
                         <input type="text" name="task-title" id="task-title" placeholder="create new task">
                     </div>
 
                     <div>
+                        <a class="plus-task-button" href="javascript:{}" onclick="document.getElementById('create-task-form').submit();">&plus;</a>
 
                     </div>
-
+                    </form>
                 </div>
                 <div class="card-content">
-                    <button class="create-task-btn" type="submit">&plus;</button>
-                    </form>
                 </div>
             </div>
         </div>
