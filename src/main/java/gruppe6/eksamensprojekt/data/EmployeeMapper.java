@@ -1,6 +1,7 @@
 package gruppe6.eksamensprojekt.data;
 
 import gruppe6.eksamensprojekt.domain.model.Employee;
+import gruppe6.eksamensprojekt.domain.model.Subtask;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -69,6 +70,25 @@ public class EmployeeMapper {
             ps.setInt(2, employee.getId());
 
             ps.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEmployee(Employee employee){
+        try{
+            Connection conn = DBManager.getConnection();
+
+            String SQL = "UPDATE subtask SET employee_id = null WHERE employee_id =?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setInt(1, employee.getId());
+            ps.executeUpdate();
+
+            String SQL2 = "DELETE FROM employee WHERE id=?";
+            PreparedStatement ps2 = conn.prepareStatement(SQL2);
+            ps2.setInt(1, employee.getId());
+            ps2.executeUpdate();
 
         }catch (SQLException e){
             e.printStackTrace();
