@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha solutions</title>
-    <link th:href="@{/css/dashboardStyle.css}" rel="stylesheet" />
-</head>
+
+<head th:replace="fragments/head.html(pageTitle='ProjectCalculator - '+ ${project.title})">
+
 <body>
 
 <div class="wrapper">
-    <div class="sidebar">
-        <a th:href="@{/}"><h2>Project Calculator</h2></a>
-        <form id="create-project-form" th:action="@{/create-project}" method="post">
-            <input type="text" name="project-title" id="project-title" placeholder="enter project name">
-            <button type="submit" name="create-project" id="create-project-btn">&plus;</button>
-        </form>
+    <div th:replace="fragments/sidebar.html"></div>
 
-
-        <ul>
-
-            <li th:each="project: ${projectlist}">
-                <div>
-                    <a th:text="${project.title}" th:href="@{/project(id=${project.id})}"></a>
-                    <form method="post" th:action="@{/delete-project(id=${project.id})}">
-                        <button type="submit">&cross;</button>
-                    </form>
-                </div>
-            </li>
-        </ul>
-        <a href="/employee-dashboard">create employee</a>
-    </div>
     <div class="main_content">
         <div class="header">
             <div>
