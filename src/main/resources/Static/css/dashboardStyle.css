@@ -43,6 +43,21 @@ a{
     text-align: center;
 }
 
+.center-form input{
+    color: #bdb8d7;
+    background: #4b4276;
+    border-bottom: 1px solid black;
+}
+
+.center-form input::placeholder{
+    color: #a7a4ba
+}
+
+.info input{
+    background-color: #f3f5f9;
+    border-bottom: 0.2px solid black;
+}
+
 .plus-button{
     font-size: 20px;
     color: #bdb8d7;
@@ -170,6 +185,21 @@ a{
 
 .plus-task-button{
     font-size: 20px;
+}
+
+input{
+    border: none;
+    padding: 0px 2px;
+}
+
+input:focus{
+    outline: none;
+}
+
+select{
+    border: none;
+    background-color: #f3f5f9;
+    border-bottom: 0.2px solid black;
 }
 
 

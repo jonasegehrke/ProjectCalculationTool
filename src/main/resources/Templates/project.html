@@ -105,7 +105,7 @@
                                         <div th:if="${subtask.employeeId == 0}">
                                         <form th:action="@{/assign-employee(subtaskId=${subtask.id}, hours=${subtask.hours})}" method="post">
                                             <select name="employeeId" onchange="this.form.submit()">
-                                                <option value="" disabled selected>Select</option>
+                                                <option value="" disabled selected>Select employee</option>
                                                 <div th:each="employee: ${employeelist}">
                                                     <option th:text="${employee.empName}" th:value="${employee.id}" ></option>
                                                 </div>
@@ -126,8 +126,8 @@
                         </div>
 
                     <form id="create-subtask-form" th:action="@{/create-subtask(id=${task.id})}" method="post">
-                        <input type="text" name="subtask-title" id="subtask-title"  placeholder="subtask title">
-                        <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="subtask hours">
+                        <input type="text" name="subtask-title" id="subtask-title"  placeholder="Subtask title">
+                        <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="Subtask hours">
 
                         <a class="plus-task-button" href="javascript:{}" onclick="document.getElementById('create-subtask-form').submit();">&plus;</a>
                     </form>
@@ -142,7 +142,7 @@
                 <div class="create-task-header">
                     <form id="create-task-form" class="create-task" th:action="@{/create-task}" method="post">
                     <div>
-                        <input type="text" name="task-title" id="task-title" placeholder="create new task">
+                        <input type="text" name="task-title" id="task-title" placeholder="New task title">
                     </div>
 
                     <div>
