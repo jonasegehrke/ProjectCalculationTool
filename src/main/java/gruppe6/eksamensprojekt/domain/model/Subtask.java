@@ -4,7 +4,7 @@ public class Subtask {
 
     private int id;
     private String title;
-    private double hours;
+    private double hours = 0;
     private int taskId;
     private int employeeId = 0;
 

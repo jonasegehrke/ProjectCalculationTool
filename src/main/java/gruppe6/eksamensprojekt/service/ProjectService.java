@@ -42,10 +42,10 @@ public class ProjectService {
         }
     }
 
-    public Project readProject(int id) {
+    public Project readProject(int projectId) {
         projectList = projectMapper.readAllProjects();
         for (int i = 0; i < projectList.size(); i++) {
-            if (projectList.get(i).getId() == id) {
+            if (projectList.get(i).getId() == projectId) {
                 currentProjectId = projectList.get(i).getId();
                 return projectList.get(i);
             }
@@ -57,10 +57,10 @@ public class ProjectService {
         return currentProjectId;
     }
 
-    public void deleteProject(int id, EmployeeService employeeService) throws Exception {
+    public void deleteProject(int projectId, EmployeeService employeeService) throws Exception {
 
         for(int i = 0; i < currentTaskList.size(); i++){
-            if(currentTaskList.get(i).getProjectId() == id){
+            if(currentTaskList.get(i).getProjectId() == projectId){
                 for(int j = 0; j < currentSubtaskList.size(); j++){
                     if(currentSubtaskList.get(j).getTaskId() == currentTaskList.get(i).getId()){
                         employeeService.deductHoursFromEmployee(getEmployeeIdFromSubtask(currentSubtaskList.get(j).getId()), currentSubtaskList.get(j).getHours());
@@ -68,16 +68,17 @@ public class ProjectService {
                 }
             }
         }
-        readTaskList(id);
-ArrayList taskIdList = new ArrayList();
+
+        readTaskList(projectId);
+        ArrayList taskIdList = new ArrayList();
         for(int i = 0; i < taskList.size(); i++){
-            if(taskList.get(i).getProjectId() == id){
+            if(taskList.get(i).getProjectId() == projectId){
                 taskIdList.add(taskList.get(i).getId());
             }
         }
 
         for(int i = 0; i < projectList.size(); i++){
-            if(projectList.get(i).getId() == id){
+            if(projectList.get(i).getId() == projectId){
                 projectMapper.deleteProject(projectList.get(i),taskIdList);
             }
         }
@@ -92,31 +93,31 @@ ArrayList taskIdList = new ArrayList();
         }
     }
 
-    public ArrayList readTaskList(int id) {
+    public ArrayList readTaskList(int projectId) {
 
         taskList = taskMapper.readAllTasks();
         currentTaskList = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.get(i).getProjectId() == id) {
+            if (taskList.get(i).getProjectId() == projectId) {
                 currentTaskList.add(taskList.get(i));
                 projectHours += taskList.get(i).getHours();
             }
         }
 
 
-        projectMapper.updateProject(id, projectHours);
+        projectMapper.updateProject(projectId, projectHours);
         projectHours = 0;
 
         return currentTaskList;
     }
 
-    public void deleteTask(int id, EmployeeService employeeService) throws Exception {
+    public void deleteTask(int taskId, EmployeeService employeeService) throws Exception {
         for(int i = 0; i < currentTaskList.size(); i++){
-            if(currentTaskList.get(i).getId() == id){
+            if(currentTaskList.get(i).getId() == taskId){
                 taskMapper.deleteTask(currentTaskList.get(i));
 
                 for(int j = 0; j < currentSubtaskList.size(); j++){
-                    if(currentSubtaskList.get(j).getTaskId() == id){
+                    if(currentSubtaskList.get(j).getTaskId() == taskId){
                         employeeService.deductHoursFromEmployee(getEmployeeIdFromSubtask(currentSubtaskList.get(j).getId()), currentSubtaskList.get(j).getHours());
                     }
                 }
@@ -131,9 +132,9 @@ ArrayList taskIdList = new ArrayList();
 
 
     // Subtask
-    public void createSubtask(String title, double hours, int currentTaskId) {
-        if (title.trim().length() > 0 || hours > 0) {
-            Subtask subtask = new Subtask(title, hours, currentTaskId);
+    public void createSubtask(String title, String hours, int currentTaskId) {
+        if (title.trim().length() > 0 && !hours.isEmpty()) {
+            Subtask subtask = new Subtask(title, Double.parseDouble(hours), currentTaskId);
             subtaskMapper.createSubtask(subtask);
         }
     }
@@ -158,9 +159,9 @@ ArrayList taskIdList = new ArrayList();
         return currentSubtaskList;
     }
 
-    public void deleteSubtask(int id){
+    public void deleteSubtask(int subtaskId){
         for(int i = 0; i < currentSubtaskList.size(); i++){
-            if(currentSubtaskList.get(i).getId() == id){
+            if(currentSubtaskList.get(i).getId() == subtaskId){
                 subtaskMapper.deleteSubtask(currentSubtaskList.get(i));
             }
         }
@@ -174,18 +175,18 @@ ArrayList taskIdList = new ArrayList();
         }
     }
 
-    public int getEmployeeIdFromSubtask(int id) throws Exception {
+    public int getEmployeeIdFromSubtask(int subtaskId) throws Exception {
         for(int i = 0; i < subtaskList.size(); i++){
-            if(subtaskList.get(i).getId() == id){
+            if(subtaskList.get(i).getId() == subtaskId){
                 return subtaskList.get(i).getEmployeeId();
             }
         }
         throw new Exception();
     }
 
-    public double getSubtaskHours(int id) throws Exception {
+    public double getSubtaskHours(int subtaskId) throws Exception {
         for(int i = 0; i < subtaskList.size(); i++){
-            if(subtaskList.get(i).getId() == id){
+            if(subtaskList.get(i).getId() == subtaskId){
                 return subtaskList.get(i).getHours();
             }
         }

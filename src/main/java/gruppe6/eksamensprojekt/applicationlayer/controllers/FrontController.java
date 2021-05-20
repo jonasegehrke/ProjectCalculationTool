@@ -29,8 +29,6 @@ public class FrontController {
         model.addAttribute("subtasklist", projectService.readSubtaskList(projectService.readTaskList(projectId)));
         model.addAttribute("tasklist", projectService.readTaskList(projectId));
         model.addAttribute("project", projectService.readProject(projectId));
-
-
         return "project.html";
     }
 
@@ -40,19 +38,12 @@ public class FrontController {
         return "dashboard-without-splash.html";
     }
 
-    @GetMapping(value = "/employee-dashboard")
-    public String createEmployee(Model model) {
-        model.addAttribute("projectlist", projectService.renderProjectList());
-        model.addAttribute("employeelist", employeeService.readEmployeeList());
-        return "employee-dashboard.html";
-    }
-
     @PostMapping(value = "/create-employee")
     public String createEmployee(WebRequest request){
         String empName = request.getParameter("emp-name");
         String jobTitle = request.getParameter("job-title");
         employeeService.createEmployee(empName, jobTitle);
-        return "redirect:/employee-dashboard";
+        return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/create-project")
@@ -70,31 +61,31 @@ public class FrontController {
     }
 
     @PostMapping(value = "/create-subtask")
-    public String createSubtask(@RequestParam("id") int id, WebRequest request) {
+    public String createSubtask(@RequestParam("id") int taskId, WebRequest request) {
         String title = request.getParameter("subtask-title");
-        double hours = Double.parseDouble(request.getParameter("subtask-hours"));
-        projectService.createSubtask(title,hours,id);
+        String hours = request.getParameter("subtask-hours");
+        projectService.createSubtask(title,hours,taskId);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value ="/delete-subtask")
-    public String deleteSubtask(@RequestParam("id") int id) throws Exception {
-        projectService.deleteSubtask(id);
+    public String deleteSubtask(@RequestParam("id") int subtaskId) throws Exception {
+        projectService.deleteSubtask(subtaskId);
 
-        employeeService.deductHoursFromEmployee(projectService.getEmployeeIdFromSubtask(id), projectService.getSubtaskHours(id));
+        employeeService.deductHoursFromEmployee(projectService.getEmployeeIdFromSubtask(subtaskId), projectService.getSubtaskHours(subtaskId));
 
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/delete-task")
-    public String deleteTask(@RequestParam("id") int id) throws Exception {
-        projectService.deleteTask(id, employeeService);
+    public String deleteTask(@RequestParam("id") int taskId) throws Exception {
+        projectService.deleteTask(taskId, employeeService);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
     @PostMapping(value = "/delete-project")
-    public String deleteProject(@RequestParam("id") int id) throws Exception {
-        projectService.deleteProject(id, employeeService);
+    public String deleteProject(@RequestParam("id") int projectId) throws Exception {
+        projectService.deleteProject(projectId, employeeService);
         return "redirect:/updated-dashboard";
     }
 
@@ -106,9 +97,9 @@ public class FrontController {
     }
 
     @PostMapping(value = "/delete-employee")
-    public String deleteEmployee(@RequestParam("id") int id){
-        employeeService.deleteEmployee(id);
-        return "redirect:/employee-dashboard";
+    public String deleteEmployee(@RequestParam("id") int employeeId){
+        employeeService.deleteEmployee(employeeId);
+        return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
 
 }

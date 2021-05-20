@@ -5,11 +5,43 @@
 
 <body>
 
-<div class="wrapper">
+
+
+<div class="wrapper" id="wrapper">
+
     <div th:replace="fragments/sidebar.html"></div>
 
-    <div class="main_content">
+    <div id="employeenav" class="employee-navbar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <div class="employee-content">
+
+            <h4>Create Employee</h4>
+        <form th:action="@{/create-employee}" method="post">
+            <input type="text" name="emp-name" placeholder="Name">
+            <input type="text" name="job-title" placeholder="Job title">
+            <button type="submit" class="create-employee-btn">Submit</button>
+        </form>
+
+        <ul>
+            <li th:each="employee : ${employeelist}">
+                <div class="employee-info">
+                    <p th:text="${employee.empName}"></p>
+                    <p th:text="${employee.jobTitle}"></p>
+                    <p class="card-inline" th:text="${employee.plannedHours}"></p><p class="card-inline"> hours</p>
+                    <form method="post" th:action="@{/delete-employee(id=${employee.id})}">
+                        <button type="submit">&cross;</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+
+    <div class="main_content" id="main">
         <div class="header">
+
             <div>
                 <p >Project title:</p>
                 <p th:text="${project.title}"></p>
@@ -20,8 +52,15 @@
                 <p th:text="${project.hours}"></p>
             </div>
 
+
+            <div class="employee-nav">
+                <span style="cursor:pointer" id="openbtn" onclick="openNav()">&#9776; Employees</span>
+                <span style="cursor:pointer; display: none" id="closebtn" onclick="closeNav()">&#9776; Employees</span>
+            </div>
+
         </div>
-        <div class="info">
+        <div class="info" id="info">
+
             <div th:each="task: ${tasklist}" class="task-card">
 
                 <div class="card-header">
@@ -35,7 +74,7 @@
                         <p class="card-inline"> hours</p>
                     </div>
                     <div>
-                        <form method="post" th:action="@{/delete-task(id=${task.id})}">
+                        <form method="post"  th:action="@{/delete-task(id=${task.id})}">
                             <button type="submit">&cross;</button>
                         </form>
                     </div>
@@ -87,14 +126,15 @@
                         </div>
 
                     <form th:action="@{/create-subtask(id=${task.id})}" method="post">
-                        <input type="text" name="subtask-title" id="subtask-title" placeholder="subtask title">
-                        <input type="number" name="subtask-hours" id="subtask-hours" placeholder="subtask hours">
+                        <input type="text" name="subtask-title" id="subtask-title"  placeholder="subtask title">
+                        <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="subtask hours">
 
-                        <button type ="submit" class="create-subtask-btn">&plus;</button>
+                        <button type ="submit" class="create-subtask-btn" id="create-subtask">&plus;</button>
                     </form>
 
                 </div>
             </div>
+
 
 
 
@@ -115,18 +155,14 @@
                     </form>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
+
+
+
+
+<script th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

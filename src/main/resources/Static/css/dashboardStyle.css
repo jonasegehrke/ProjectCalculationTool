@@ -7,7 +7,7 @@
 }
 
 body{
-    background: #f3f5f9;
+    background-color: #f3f5f9;
 }
 
 a{
@@ -17,6 +17,7 @@ a{
 .wrapper{
     display: flex;
     position: relative;
+    transition: margin-left .5s;
 }
 
 .wrapper .sidebar{
@@ -189,4 +190,78 @@ a{
     bottom: 150px;
     opacity: 0;
     transition: ease-in-out 0.5s;
+}
+
+
+/*sidenav push */
+.employee-navbar {
+
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #4b4276;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.employee-navbar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.employee-navbar a:hover {
+    color: #f1f1f1;
+}
+
+.employee-navbar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+#info{
+    transition: width .5s;
+}
+
+.employee-info p {
+    color: #bdb8d7;
+}
+
+.employee-content{
+    margin: 10px;
+}
+
+.employee-content h4{
+    color: #bdb8d7;
+    text-align: center;
+}
+
+.employee-info{
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(225,225,225,0.05);
+}
+
+
+.employee-content h4, input, button{
+    margin-bottom: 5px;
+}
+
+
+@media screen and (max-height: 450px) {
+    .employee-navbar {padding-top: 15px;}
+    .employee-navbar a {font-size: 18px;}
 }
