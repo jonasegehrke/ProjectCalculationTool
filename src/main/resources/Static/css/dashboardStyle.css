@@ -159,6 +159,11 @@ a{
     width: 5%;
 }
 
+#create-subtask-form{
+    border-top: 1px solid rgba(0,0,0,0.3);
+    margin-top: 10px;
+}
+
 .create-task-btn{
     margin-top: 30px;
     margin-left: 10px;
