@@ -44,6 +44,9 @@
                     <p th:text="${employee.empName}"></p>
                     <p th:text="${employee.jobTitle}"></p>
                     <p th:text="${employee.plannedHours}"></p>
+                    <form method="post" th:action="@{/delete-employee(id=${employee.id})}">
+                        <button type="submit">&cross;</button>
+                    </form>
                     <br>
                 </div>
             </li>

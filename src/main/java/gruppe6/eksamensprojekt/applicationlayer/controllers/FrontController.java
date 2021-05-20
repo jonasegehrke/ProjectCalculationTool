@@ -104,4 +104,11 @@ public class FrontController {
         employeeService.addHoursToEmployee(employeeId,hours);
         return "redirect:/project?id=" + projectService.getCurrentProjectId();
     }
+
+    @PostMapping(value = "/delete-employee")
+    public String deleteEmployee(@RequestParam("id") int id){
+        employeeService.deleteEmployee(id);
+        return "redirect:/employee-dashboard";
+    }
+
 }
