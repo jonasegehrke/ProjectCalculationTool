@@ -289,11 +289,13 @@ select{
 
 #main {
     transition: margin-left .5s;
+    transition: margin-right .5s;
 }
 
 #info{
     transition: width .5s;
 }
+
 
 .employee-info p {
     color: #bdb8d7;
