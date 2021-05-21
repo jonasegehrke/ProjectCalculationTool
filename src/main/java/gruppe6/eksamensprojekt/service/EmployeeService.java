@@ -48,7 +48,6 @@ public class EmployeeService {
             if(employeeList.get(i).getId() == employeeId){
                 employeeMapper.deleteEmployee(employeeList.get(i));
             }
-            String employee = "hej";
         }
     }
 
