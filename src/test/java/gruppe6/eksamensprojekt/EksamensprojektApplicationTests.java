@@ -1,5 +1,6 @@
 package gruppe6.eksamensprojekt;
 
+import gruppe6.eksamensprojekt.domain.model.Project;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,14 +21,5 @@ class EksamensprojektApplicationTests {
         //Assert
             assertEquals(result, projectService.renderProjectList());
     }
-
-    @Test
-    void testCreateProject() {
-        //Arrange
-        ProjectService projectService = new ProjectService();
-        //Act
-        ArrayList result = new ArrayList();
-        //Assert
-        assertEquals(result, projectService.renderProjectList());
-    }
+    
 }
