@@ -59,26 +59,39 @@ public class ProjectService {
 
     public void deleteProject(int projectId, EmployeeService employeeService) throws Exception {
 
+        //Loop igennem currentTaskList for at få fat i Tasks
         for(int i = 0; i < currentTaskList.size(); i++){
+            // Tjekker om taskens projectId er det samme som det Project vi vil slette
             if(currentTaskList.get(i).getProjectId() == projectId){
+                //Loop igennem currentSubtaskList for at få fat i Subtasks
                 for(int j = 0; j < currentSubtaskList.size(); j++){
+                    // Tjekker om subtaskens taskId er det samme som det Task vi vil slette
                     if(currentSubtaskList.get(j).getTaskId() == currentTaskList.get(i).getId()){
+                        //Fjern de rigtige timer fra employee
                         employeeService.deductHoursFromEmployee(getEmployeeIdFromSubtask(currentSubtaskList.get(j).getId()), currentSubtaskList.get(j).getHours());
                     }
                 }
             }
         }
 
-        readTaskList(projectId);
-        ArrayList taskIdList = new ArrayList();
+
+        readTaskList(projectId);    // Opdater tasklisten til projektId
+        ArrayList taskIdList = new ArrayList();     // Initialiser en arrayliste til at holde på taskId
+
+        // Loop igennem tasklist for at få fat i Tasks
         for(int i = 0; i < taskList.size(); i++){
+            // Tjekker om taskens projectId er det samme som det Project vi vil slette
             if(taskList.get(i).getProjectId() == projectId){
+                // Tilføj taskId til arraylisten
                 taskIdList.add(taskList.get(i).getId());
             }
         }
 
+        //Loop igennem projectlist for at få fat i projects
         for(int i = 0; i < projectList.size(); i++){
+            // Tjekker om projectId er det samme som det project vi vil slette
             if(projectList.get(i).getId() == projectId){
+                // Kald projectMapper for at slette project, task og subtasks i SQL databasen
                 projectMapper.deleteProject(projectList.get(i),taskIdList);
             }
         }
