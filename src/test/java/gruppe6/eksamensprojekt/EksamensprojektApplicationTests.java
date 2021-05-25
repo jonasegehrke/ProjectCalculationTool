@@ -1,13 +1,33 @@
 package gruppe6.eksamensprojekt;
 
-import org.junit.jupiter.api.Test;
+import gruppe6.eksamensprojekt.service.ProjectService;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class EksamensprojektApplicationTests {
 
     @Test
-    void contextLoads() {
+    void testRenderProjectList() {
+        //Arrange
+            ProjectService projectService = new ProjectService();
+        //Act
+            ArrayList result = new ArrayList();
+        //Assert
+            assertEquals(result, projectService.renderProjectList());
     }
 
+    @Test
+    void testCreateProject() {
+        //Arrange
+        ProjectService projectService = new ProjectService();
+        //Act
+        ArrayList result = new ArrayList();
+        //Assert
+        assertEquals(result, projectService.renderProjectList());
+    }
 }
