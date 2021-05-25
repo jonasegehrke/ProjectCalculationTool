@@ -26,22 +26,18 @@ class ProjectServiceTests {
     @Test
     void testCreateProject() {
         //Arrange
-            ProjectService projectService = new ProjectService();
+        ProjectService projectService = new ProjectService();
+        Project projectX = new Project("test", 0);
         //Act
-            projectService.createProject("test");
+        Project projectY = projectService.readProject(projectX.getId());
         //Assert
-            assertEquals("test", projectService.readProject(projectService.getCurrentProjectId()).getTitle());
+        assertEquals(projectX, projectY);
     }
+
 
     @Test
     void testReadProject() {
-        //Arrange
-            ProjectService projectService = new ProjectService();
-            Project projectX = new Project("test", 0);
-        //Act
-            Project projectY = projectService.readProject(projectX.getId());
-        //Assert
-            assertEquals(projectX, projectY);
+
     }
 
     /**
