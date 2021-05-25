@@ -28,7 +28,6 @@ public class ProjectService {
     ArrayList<Subtask> currentSubtaskList;
     double taskHours;
 
-
     //Project
     public ArrayList renderProjectList() {
         return projectList = projectMapper.readAllProjects();
@@ -44,13 +43,14 @@ public class ProjectService {
 
     public Project readProject(int projectId) {
         projectList = projectMapper.readAllProjects();
+        Project result = null;
         for (int i = 0; i < projectList.size(); i++) {
             if (projectList.get(i).getId() == projectId) {
                 currentProjectId = projectList.get(i).getId();
-                return projectList.get(i);
+                result = projectList.get(i);
             }
         }
-        return null;
+        return result;
     }
 
     public int getCurrentProjectId() {
