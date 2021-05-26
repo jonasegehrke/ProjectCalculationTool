@@ -17,11 +17,6 @@ public class FrontController {
     ProjectService projectService = new ProjectService();
     EmployeeService employeeService = new EmployeeService();
 
-    @RequestMapping(value = "/testconn")
-    public String testConn(){
-
-        return "test.html";
-    }
 
     @GetMapping(value = "/")
     public String dashboard(Model model) {
