@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProjectMapper {
-
+    /**
+     * Creates a project in our MySQL database
+     * @param project an object of a project used to create a project in our database
+     */
     public void createProject(Project project){
         try{
             Connection conn = DBManager.getConnection();
@@ -29,6 +32,11 @@ public class ProjectMapper {
         }
     }
 
+    /**
+     * Updates a specific project in our MySQL database
+     * @param id used to find the correct project to update
+     * @param hours the amount of hours that needs to be in our database on the specific project
+     */
     public void updateProject(int id, double hours){
         try{
             Connection conn = DBManager.getConnection();
@@ -47,6 +55,11 @@ public class ProjectMapper {
 
     }
 
+    /**
+     * Deletes a project from our MySQL database
+     * @param project an object of project, containing the data needed to be deleted from our database
+     * @param taskIdList a list containing all the tasks connected to the specific project
+     */
     public void deleteProject(Project project, ArrayList taskIdList){
         try{
             //Få en connection fra DBManager til SQL
@@ -94,6 +107,10 @@ public class ProjectMapper {
         }
     }
 
+    /**
+     * Reads all the projects from our MySQL database
+     * @return returns a list of all the projects in our database
+     */
     public ArrayList<Project> readAllProjects(){
         ArrayList<Project> list = new ArrayList<>();
 
