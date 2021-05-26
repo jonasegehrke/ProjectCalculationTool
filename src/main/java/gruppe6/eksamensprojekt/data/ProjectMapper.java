@@ -49,31 +49,47 @@ public class ProjectMapper {
 
     public void deleteProject(Project project, ArrayList taskIdList){
         try{
-            Connection conn = DBManager.getConnection();        //Få en connection fra DBManager til SQL
-            conn.setAutoCommit(false);          //Slå Auto Commit fra så vi manuelt skal commit alle excecutes
+            //Få en connection fra DBManager til SQL
+            Connection conn = DBManager.getConnection();
+            //Slå Auto Commit fra så vi manuelt skal commit alle excecutes
+            conn.setAutoCommit(false);
 
-            String SQL = "DELETE FROM subtask WHERE task_id=?";         //SQL statement "Slet alt fra subtask hvor taskId =?"
-            PreparedStatement ps = conn.prepareStatement(SQL);          //Prepared statement
+            //SQL statement "Slet alt fra subtask hvor taskId =?"
+            String SQL = "DELETE FROM subtask WHERE task_id=?";
+            //Prepared statement
+            PreparedStatement ps = conn.prepareStatement(SQL);
             //Loop igennem taskIdList for at slette alle subtasks med dem som task id.
             for (int i = 0; i<taskIdList.size(); i++){
-                ps.setInt(1, Integer.parseInt(taskIdList.get(i).toString()));  //Set task id
-                ps.executeUpdate();     //Execute
+                //Set task id
+                ps.setInt(1, Integer.parseInt(taskIdList.get(i).toString()));
+                //Execute
+                ps.executeUpdate();
             }
 
-            String SQL2 = "DELETE FROM task WHERE project_id=?";    //SQL statement "Slet alt fra task hvor projectId =?"
-            PreparedStatement ps2 = conn.prepareStatement(SQL2);    //Prepared statement
-            ps2.setInt(1, project.getId());             //Set projectId
-            ps2.executeUpdate();                                    //Execute
+            //SQL statement "Slet alt fra task hvor projectId =?"
+            String SQL2 = "DELETE FROM task WHERE project_id=?";
+            //Prepared statement
+            PreparedStatement ps2 = conn.prepareStatement(SQL2);
+            //Set projectId
+            ps2.setInt(1, project.getId());
+            //Execute
+            ps2.executeUpdate();
 
-            String SQL3 = "DELETE FROM project WHERE id=?";         //SQL statement "Slet alt fra project hvor id =?"
-            PreparedStatement ps3 = conn.prepareStatement(SQL3);    //Prepare statement
-            ps3.setInt(1, project.getId());             //Set id
-            ps3.executeUpdate();                                    //Execute
+            //SQL statement "Slet alt fra project hvor id =?"
+            String SQL3 = "DELETE FROM project WHERE id=?";
+            //Prepare statement
+            PreparedStatement ps3 = conn.prepareStatement(SQL3);
+            //Set id
+            ps3.setInt(1, project.getId());
+            //Execute
+            ps3.executeUpdate();
 
-            conn.commit();                                          //Commit alle executes på samme tid, så ingen information er mistet
-            conn.setAutoCommit(true);                               //Slå Auto Commit til
+            //Commit alle executes på samme tid, så ingen information er mistet
+            conn.commit();
+            //Slå Auto Commit til
+            conn.setAutoCommit(true);
 
-        }catch (SQLException e){                                    //Catch SQLException
+        }catch (SQLException e){ //Catch SQLException
             e.printStackTrace();
         }
     }

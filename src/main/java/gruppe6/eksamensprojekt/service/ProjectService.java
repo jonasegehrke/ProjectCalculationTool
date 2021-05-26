@@ -148,8 +148,11 @@ public class ProjectService {
 
     // Subtask
     public void createSubtask(String title, String hours, int currentTaskId) {
+        //Tjekker om brugerinput er tom, hvis ikke så bliver subtask oprettet
         if (title.trim().length() > 0 && !hours.isEmpty()) {
+            //Create subtask
             Subtask subtask = new Subtask(title, Double.parseDouble(hours), currentTaskId);
+            //Send subtask til datalag
             subtaskMapper.createSubtask(subtask);
         }
     }
