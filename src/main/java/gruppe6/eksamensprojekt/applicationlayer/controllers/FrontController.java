@@ -5,10 +5,7 @@ import gruppe6.eksamensprojekt.service.EmployeeService;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
@@ -20,9 +17,10 @@ public class FrontController {
     ProjectService projectService = new ProjectService();
     EmployeeService employeeService = new EmployeeService();
 
-    @GetMapping(value = "/testconn")
+    @RequestMapping(value = "/testconn")
     public String testConn(){
-        return "test";
+
+        return "test.html";
     }
 
     @GetMapping(value = "/")

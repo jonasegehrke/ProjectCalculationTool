@@ -18,7 +18,7 @@ public class DBManager {
 */
     private static String usr = "remote";
     private static String pwd = "1234";
-    private static String url = "jdbc:mysql://3.65.39.61/project_calculator?serverTimezone=UTC";
+    private static String url = "jdbc:mysql://18.184.17.56/project_calculator?serverTimezone=UTC";
 
 
     private static Connection connection = null;
