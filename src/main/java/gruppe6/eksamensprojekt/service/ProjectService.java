@@ -29,6 +29,11 @@ public class ProjectService {
     double taskHours;
 
     //Project
+
+    /**
+     * Reads all projects from a list
+     * @return returns a new list with all projects
+     */
     public ArrayList renderProjectList() {
         return projectList = projectMapper.readAllProjects();
     }
@@ -41,6 +46,11 @@ public class ProjectService {
         }
     }
 
+    /**
+     * Reads projects from a list a returns a single object from that list
+     * @param projectId is the ID used to sort through all of the projects
+     * @return Returns a project Object from the project list
+     */
     public Project readProject(int projectId) {
         projectList = projectMapper.readAllProjects();
         Project result = null;
@@ -55,10 +65,21 @@ public class ProjectService {
         return result;
     }
 
+    /**
+     * A getter used to get the field currentProjectId
+     * @return returns the field currentProjectId
+     */
     public int getCurrentProjectId() {
         return currentProjectId;
     }
 
+    /**
+     * Deletes a specific project
+     * @param projectId is the ID used to sort through all of the projects
+     * @param employeeService is an object from EmployeeService, used to remove the correct amount of hours
+     *                        from the employees assigned to the specific project
+     * @throws Exception if exception found
+     */
     public void deleteProject(int projectId, EmployeeService employeeService) throws Exception {
 
         //Loop igennem currentTaskList for at få fat i Tasks
@@ -101,6 +122,12 @@ public class ProjectService {
 
 
     //Task
+
+    /**
+     * Creates a task in a project
+     * @param title is a String and the title of the task
+     * @param currentProjectId is used to add the task to the correct project
+     */
     public void createTask(String title, int currentProjectId) {
         if (title.trim().length() > 0) {
             Task task = new Task(title, 0, currentProjectId);
@@ -108,6 +135,11 @@ public class ProjectService {
         }
     }
 
+    /**
+     * Reads all tasks but only adds the ones with the same projectId to a new list of tasks
+     * @param projectId is used to sort the tasks into the right projects
+     * @return returns a list of all the tasks connected to a specific project
+     */
     public ArrayList readTaskList(int projectId) {
 
         taskList = taskMapper.readAllTasks();
@@ -126,6 +158,13 @@ public class ProjectService {
         return currentTaskList;
     }
 
+    /**
+     * Deletes a task
+     * @param taskId Used to sort through the tasks, finding the right one
+     * @param employeeService is an object from EmployeeService, used to remove the correct amount of hours
+     *      *                 from the employees assigned to the specific task
+     * @throws Exception if exception found
+     */
     public void deleteTask(int taskId, EmployeeService employeeService) throws Exception {
         for(int i = 0; i < currentTaskList.size(); i++){
             if(currentTaskList.get(i).getId() == taskId){
@@ -147,6 +186,13 @@ public class ProjectService {
 
 
     // Subtask
+
+    /**
+     * Creates a subtask
+     * @param title Title of the subtask
+     * @param hours The amount of hours the specific subtask needs
+     * @param currentTaskId Used to sort through task, so the subtask is created the correct place
+     */
     public void createSubtask(String title, String hours, int currentTaskId) {
         if (title.trim().length() > 0 && !hours.isEmpty()) {
             Subtask subtask = new Subtask(title, Double.parseDouble(hours), currentTaskId);
@@ -154,6 +200,11 @@ public class ProjectService {
         }
     }
 
+    /**
+     * Reads all the subtasks and returns a list of subtask connected to the same task
+     * @param currentTaskList a list of tasks connected to the same project
+     * @return returns a list of subtask who are all connected to the same task
+     */
     public ArrayList readSubtaskList(ArrayList<Task> currentTaskList) {
         subtaskList = subtaskMapper.readAllSubtasks();
         currentSubtaskList = new ArrayList<>();
@@ -174,6 +225,10 @@ public class ProjectService {
         return currentSubtaskList;
     }
 
+    /**
+     * Delets a subtask
+     * @param subtaskId Used to sort through the subtasks finding the correct one to delete
+     */
     public void deleteSubtask(int subtaskId){
         for(int i = 0; i < currentSubtaskList.size(); i++){
             if(currentSubtaskList.get(i).getId() == subtaskId){
@@ -182,6 +237,11 @@ public class ProjectService {
         }
     }
 
+    /**
+     * Assigns a specific employee to a subtask
+     * @param subtaskId Used to sort through the subtasks
+     * @param employeeId Used to sort through the employees, finding the one assigned to the specific subtask
+     */
     public void assignEmployeeToSubtask(int subtaskId, int employeeId){
         for(int i = 0; i < currentSubtaskList.size(); i++){
             if(currentSubtaskList.get(i).getId() == subtaskId){
@@ -190,6 +250,12 @@ public class ProjectService {
         }
     }
 
+    /**
+     * Gets the employeeId from a specific subtask
+     * @param subtaskId Used to sort through subtasks, finding the correct one
+     * @return returns the employee id from the specific subtask
+     * @throws Exception if exception found
+     */
     public int getEmployeeIdFromSubtask(int subtaskId) throws Exception {
         for(int i = 0; i < subtaskList.size(); i++){
             if(subtaskList.get(i).getId() == subtaskId){
@@ -199,6 +265,12 @@ public class ProjectService {
         throw new Exception();
     }
 
+    /**
+     * Gets the amount of hours from a specific subtask
+     * @param subtaskId Used to sort through the subtasks
+     * @return returns the amount of hours from a specific subtask
+     * @throws Exception if exception found
+     */
     public double getSubtaskHours(int subtaskId) throws Exception {
         for(int i = 0; i < subtaskList.size(); i++){
             if(subtaskList.get(i).getId() == subtaskId){
