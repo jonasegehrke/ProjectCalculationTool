@@ -1,5 +1,6 @@
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
+import gruppe6.eksamensprojekt.domain.model.Project;
 import gruppe6.eksamensprojekt.service.EmployeeService;
 import gruppe6.eksamensprojekt.service.ProjectService;
 import org.springframework.stereotype.Controller;
@@ -7,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -15,6 +19,11 @@ public class FrontController {
 
     ProjectService projectService = new ProjectService();
     EmployeeService employeeService = new EmployeeService();
+
+    @GetMapping(value = "/testconn")
+    public String testConn(){
+        return "test";
+    }
 
     @GetMapping(value = "/")
     public String dashboard(Model model) {

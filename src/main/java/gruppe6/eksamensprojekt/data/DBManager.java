@@ -11,15 +11,15 @@ import java.util.Properties;
 
 public class DBManager {
 
-
+/*
     private static String usr;
     private static String pwd;
     private static String url;
-/*
-    private static String usr = "root";
-    private static String pwd = "root";
-    private static String url = "jdbc:mysql://localhost/project_calculator?serverTimezone=UTC";
 */
+    private static String usr = "remote";
+    private static String pwd = "1234";
+    private static String url = "jdbc:mysql://3.65.39.61/project_calculator?serverTimezone=UTC";
+
 
     private static Connection connection = null;
 
@@ -39,8 +39,8 @@ public class DBManager {
 
         if (connection != null) return connection;
 
-
-        try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
+/*
+        try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(input);
             url = properties.getProperty("url");
@@ -49,7 +49,7 @@ public class DBManager {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
+        */
 
 
         try {
@@ -61,3 +61,18 @@ public class DBManager {
     }
 
 }
+
+
+
+
+/*
+        try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
+            Properties properties = new Properties();
+            properties.load(input);
+            url = properties.getProperty("url");
+            usr = properties.getProperty("usr");
+            pwd = properties.getProperty("pwd");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+*/
