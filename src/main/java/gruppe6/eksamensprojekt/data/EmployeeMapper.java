@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class EmployeeMapper {
-
+    /**
+     * Creates an employee in our MySQL database
+     * @param employee an object containing the data needed in our database
+     */
     public void createEmployee(Employee employee){
         try{
             Connection conn = DBManager.getConnection();
@@ -29,6 +32,10 @@ public class EmployeeMapper {
         }
     }
 
+    /**
+     * Reads all employes from our MySQL database
+     * @return returns an arraylist of all the Employees from our database
+     */
     public ArrayList<Employee> readAllEmployees(){
 
         ArrayList<Employee> list = new ArrayList<>();
@@ -60,6 +67,10 @@ public class EmployeeMapper {
         return list;
     }
 
+    /**
+     * Edits the amount of hours a specific employee has in our MySQL database
+     * @param employee an object of employee containing the data (hours) needed to be edited
+     */
     public void editEmployeeHours(Employee employee){
         try{
             Connection conn = DBManager.getConnection();
@@ -76,6 +87,10 @@ public class EmployeeMapper {
         }
     }
 
+    /**
+     * Deletes an employee from our MySQL Database
+     * @param employee an object of the employee used to delete that specific employee from the database
+     */
     public void deleteEmployee(Employee employee){
         try{
             Connection conn = DBManager.getConnection();

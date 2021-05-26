@@ -6,7 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SubtaskMapper {
-
+    /**
+     * Creates a subtask in our MySQL database
+     * @param subtask an object containing the data needed to create a subtask in our database
+     */
     public void createSubtask(Subtask subtask) {
         try {
             Connection conn = DBManager.getConnection();
@@ -29,6 +32,11 @@ public class SubtaskMapper {
         }
     }
 
+    /**
+     * Assigns an employee to a specific subtask in our MySQL Database
+     * @param subtask an object containing data needed to find the right subtask to assign the employee to
+     * @param employeeId Used to sort through the employees assigning the correct one
+     */
     public void assignEmployeeToSubtask(Subtask subtask, int employeeId) {
         try {
             Connection conn = DBManager.getConnection();
@@ -46,6 +54,10 @@ public class SubtaskMapper {
 
     }
 
+    /**
+     * Deletes a specific subtask from our MySQL Database
+     * @param subtask an object containing the data needed to delete the correct subtask from our database
+     */
     public void deleteSubtask(Subtask subtask){
         try{
             Connection conn = DBManager.getConnection();
@@ -61,6 +73,10 @@ public class SubtaskMapper {
         }
     }
 
+    /**
+     * Reads all subtask from our database
+     * @return returns a list containing all of the subtasks from the database
+     */
     public ArrayList<Subtask> readAllSubtasks() {
         ArrayList<Subtask> list = new ArrayList<>();
 

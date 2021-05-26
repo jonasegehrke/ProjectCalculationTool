@@ -6,7 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class TaskMapper {
-
+    /**
+     * Creates a task in our MySQL Database
+     * @param task an object containing the data needed to create a task in our database
+     */
     public void createTask(Task task){
         try{
             Connection conn = DBManager.getConnection();
@@ -29,6 +32,10 @@ public class TaskMapper {
         }
     }
 
+    /**
+     * Updates a specific task in our MySQL database
+     * @param task an object containing the data needed to update the correct information in the task in our databse
+     */
     public void updateTask(Task task){
         try{
             Connection conn = DBManager.getConnection();
@@ -46,6 +53,10 @@ public class TaskMapper {
 
     }
 
+    /**
+     * Deletes a specific task from our MySQL database
+     * @param task an object containing the data needed to delete the correct task from our database
+     */
     public void deleteTask(Task task){
         try{
             Connection conn = DBManager.getConnection();
@@ -65,6 +76,10 @@ public class TaskMapper {
         }
     }
 
+    /**
+     * Reads all of the tasks in our MySQL database
+     * @return returns a list of all the tasks in our database
+     */
     public ArrayList<Task> readAllTasks(){
         ArrayList<Task> list = new ArrayList<>();
 
