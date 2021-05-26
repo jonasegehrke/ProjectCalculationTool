@@ -1,20 +1,25 @@
 package gruppe6.eksamensprojekt.data;
 
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBManager {
 
-    /*
+
     private static String usr;
     private static String pwd;
     private static String url;
-*/
+/*
     private static String usr = "root";
     private static String pwd = "root";
     private static String url = "jdbc:mysql://localhost/project_calculator?serverTimezone=UTC";
-
+*/
 
     private static Connection connection = null;
 
@@ -34,8 +39,8 @@ public class DBManager {
 
         if (connection != null) return connection;
 
-/*
-        try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
+
+        try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
             Properties properties = new Properties();
             properties.load(input);
             url = properties.getProperty("url");
@@ -44,7 +49,7 @@ public class DBManager {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        */
+
 
 
         try {

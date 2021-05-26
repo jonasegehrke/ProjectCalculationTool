@@ -54,9 +54,7 @@ public class ProjectService {
     public Project readProject(int projectId) {
         projectList = projectMapper.readAllProjects();
         Project result = null;
-        System.out.println(projectId);
         for (int i = 0; i < projectList.size(); i++) {
-            System.out.println(projectList.get(i).getId());
             if (projectList.get(i).getId() == projectId) {
                 currentProjectId = projectList.get(i).getId();
                 result = projectList.get(i);
