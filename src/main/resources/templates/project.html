@@ -20,7 +20,7 @@
         <form id="create-employee-form" class="center-form" th:action="@{/create-employee}" method="post">
             <input type="text" name="emp-name" placeholder="Name">
             <input type="text" name="job-title" placeholder="Job title">
-            <a class="plus-button" href="javascript:{}" onclick="document.getElementById('create-employee-form').submit();">&plus;</a>
+            <button type="submit">&plus;</button>
         </form>
 
         <ul>
@@ -30,7 +30,7 @@
                     <p th:text="${employee.jobTitle}"></p>
                     <p class="card-inline" th:text="${employee.plannedHours}"></p><p class="card-inline"> hours</p>
                     <form id="delete-employee-form" method="post" th:action="@{/delete-employee(id=${employee.id})}">
-                        <a href="javascript:{}" onclick="document.getElementById('delete-employee-form').submit();">&cross;</a>
+                        <button type="submit">&times;</button>
                     </form>
                 </div>
             </li>
@@ -75,7 +75,7 @@
                     </div>
                     <div>
                         <form id="delete-task-form" method="post"  th:action="@{/delete-task(id=${task.id})}">
-                            <a href="javascript:{}" onclick="document.getElementById('delete-task-form').submit();">&cross;</a>
+                            <button type="submit">&times;</button>
                         </form>
                     </div>
 
@@ -116,7 +116,7 @@
 
                                     <div>
                                         <form id="delete-subtask-form" method="post" th:action="@{/delete-subtask(id=${subtask.id})}">
-                                            <a href="javascript:{}" onclick="document.getElementById('delete-subtask-form').submit();">&cross;</a>
+                                            <button type="submit">&times;</button>
                                         </form>
 
                                     </div>
@@ -129,7 +129,7 @@
                         <input type="text" name="subtask-title" id="subtask-title"  placeholder="Subtask title">
                         <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="Subtask hours">
 
-                        <a class="plus-task-button" href="javascript:{}" onclick="document.getElementById('create-subtask-form').submit();">&plus;</a>
+                        <button type="submit">&plus;</button>
                     </form>
 
                 </div>
@@ -146,7 +146,7 @@
                     </div>
 
                     <div>
-                        <a class="plus-task-button" href="javascript:{}" onclick="document.getElementById('create-task-form').submit();">&plus;</a>
+                        <button type="submit">&plus;</button>
 
                     </div>
                     </form>

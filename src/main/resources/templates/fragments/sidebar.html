@@ -8,7 +8,7 @@
         <h4>Create Project</h4>
         <input type="text" name="project-title" id="project-title" placeholder="Project Name">
 
-        <a class="plus-button" href="javascript:{}" onclick="document.getElementById('create-project-form').submit();">&plus;</a>
+        <button type="submit">&plus;</button>
 
     </form>
 
@@ -19,7 +19,7 @@
             <div>
                 <a th:text="${project.title}" th:href="@{/project(id=${project.id})}"></a>
                 <form id="delete-project" method="post" th:action="@{/delete-project(id=${project.id})}">
-                    <a href="javascript:{}" onclick="document.getElementById('delete-project').submit();">&cross;</a>
+                    <button type="submit">&times;</button>
                 </form>
             </div>
         </li>
