@@ -127,7 +127,7 @@
 
                     <form id="create-subtask-form" th:action="@{/create-subtask(id=${task.id})}" method="post">
                         <input type="text" name="subtask-title" id="subtask-title"  required="required" placeholder="Subtask title">
-                        <input type="number" name="subtask-hours" id="subtask-hours"  required="required" placeholder="Subtask hours">
+                        <input type="number" step="any" min="0" name="subtask-hours" id="subtask-hours"  required="required" placeholder="Subtask hours">
 
                         <button type="submit">&plus;</button>
                     </form>
