@@ -6,10 +6,8 @@
 
     <form id="create-project-form" class="center-form" th:action="@{/create-project}" method="post">
         <h4>Create Project</h4>
-        <input type="text" name="project-title" id="project-title" placeholder="Project Name">
-
+        <input type="text" name="project-title" id="project-title" required="required" placeholder="Project Name">
         <button type="submit">&plus;</button>
-
     </form>
 
 

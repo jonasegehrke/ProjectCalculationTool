@@ -80,6 +80,7 @@ a{
 .wrapper .sidebar ul li div{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .wrapper .sidebar ul li a{
@@ -311,6 +312,16 @@ select{
     border-top: 1px solid rgba(225,225,225,0.05);
     text-align: center;
     padding: 5px;
+}
+
+button {
+    background:none!important;
+    border:none;
+    padding:1px!important;
+    font-size: 30px;
+    /*border is optional*/
+
+    cursor: pointer;
 }
 
 

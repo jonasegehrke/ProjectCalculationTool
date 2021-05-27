@@ -18,8 +18,8 @@
 
             <h4>Create Employee</h4>
         <form id="create-employee-form" class="center-form" th:action="@{/create-employee}" method="post">
-            <input type="text" name="emp-name" placeholder="Name">
-            <input type="text" name="job-title" placeholder="Job title">
+            <input type="text" name="emp-name" required="required" placeholder="Name">
+            <input type="text" name="job-title" required="required" placeholder="Job title">
             <button type="submit">&plus;</button>
         </form>
 
@@ -126,8 +126,8 @@
                         </div>
 
                     <form id="create-subtask-form" th:action="@{/create-subtask(id=${task.id})}" method="post">
-                        <input type="text" name="subtask-title" id="subtask-title"  placeholder="Subtask title">
-                        <input type="number" name="subtask-hours" id="subtask-hours"  placeholder="Subtask hours">
+                        <input type="text" name="subtask-title" id="subtask-title"  required="required" placeholder="Subtask title">
+                        <input type="number" name="subtask-hours" id="subtask-hours"  required="required" placeholder="Subtask hours">
 
                         <button type="submit">&plus;</button>
                     </form>
@@ -142,7 +142,7 @@
                 <div class="create-task-header">
                     <form id="create-task-form" class="create-task" th:action="@{/create-task}" method="post">
                     <div>
-                        <input type="text" name="task-title" id="task-title" placeholder="New task title">
+                        <input type="text" name="task-title" id="task-title" required="required" placeholder="New task title">
                     </div>
 
                     <div>
