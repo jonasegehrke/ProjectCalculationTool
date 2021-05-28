@@ -154,6 +154,7 @@ class ProjectServiceTests {
             ArrayList<Task> taskList;
             ArrayList<Subtask> subtaskList;
             int index;
+            int subtaskId;
             Subtask subtask;
         //Act
         projectService.createProject("testProject");
@@ -163,10 +164,14 @@ class ProjectServiceTests {
 
         projectService.createSubtask("testSubtask", "0", taskList.get(0).getId());
         subtaskList = projectService.readSubtaskList(taskList);
-        index = projectService.readSubtaskList(taskList).size()-1;
-        projectService.deleteSubtask(subtaskList.get(index).getId());
-        subtask = readSubtaskById(subtaskList, subtaskList.get(index).getId());
 
+        index = projectService.readSubtaskList(taskList).size()-1;
+        subtaskId = subtaskList.get(0).getId();
+
+        projectService.deleteSubtask(subtaskList.get(index).getId());
+
+        subtaskList = projectService.readSubtaskList(taskList);
+        subtask = readSubtaskById(subtaskList, subtaskId);
 
         //Assert
         assertNull(subtask);
