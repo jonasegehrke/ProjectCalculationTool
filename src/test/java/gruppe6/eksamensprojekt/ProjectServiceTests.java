@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,14 +87,39 @@ class ProjectServiceTests {
     }
 
     @Test
-    void testDeleteTask() {
+    void testDeleteTask() throws Exception {
         //Arrange
             ProjectService projectService = new ProjectService();
+            EmployeeService employeeService = new EmployeeService();
+            Task task;
+            int index;
 
         //Act
+            projectService.createProject("testProject");
+            projectService.createTask("testTask", projectService.getCurrentProjectId());
+            projectService.readSubtaskList(projectService.readTaskList(projectService.getCurrentProjectId()));
+            
+            index = projectService.readTaskList(projectService.getCurrentProjectId()).size()-1;
+            task = projectService.readTaskList(projectService.getCurrentProjectId()).get(index);
+
+            projectService.deleteTask(task.getId(), employeeService);
+            task = readTaskById(projectService.readTaskList(projectService.getCurrentProjectId()), task.getId());
+
+
 
         //Assert
+            assertNull(task);
 
+    }
+
+    Task readTaskById(ArrayList<Task> taskList, int taskId){
+        Task task = null;
+        for(int i = 0; i<taskList.size(); i++){
+            if (taskList.get(i).getId() == taskId){
+                task = taskList.get(i);
+            }
+        }
+        return task;
     }
 
 

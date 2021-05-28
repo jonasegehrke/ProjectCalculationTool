@@ -138,7 +138,7 @@ public class ProjectService {
      * @param projectId is used to sort the tasks into the right projects
      * @return returns a list of all the tasks connected to a specific project
      */
-    public ArrayList readTaskList(int projectId) {
+    public ArrayList<Task> readTaskList(int projectId) {
 
         taskList = taskMapper.readAllTasks();
         currentTaskList = new ArrayList<>();
