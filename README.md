@@ -5,4 +5,4 @@ Copy the following code below and insert into your own application.properties. M
 
 usr = USERNAME_HERE
 pwd = PASSWORD_HERE
-url = jdbc:mysql://localhost/project_calculator?serverTimezone=UTC
+url = jdbc:mysql://localhost/project_calculator?serverTimezone=UTC&autoReconnect=true
