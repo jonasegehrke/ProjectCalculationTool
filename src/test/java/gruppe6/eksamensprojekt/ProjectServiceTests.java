@@ -113,9 +113,14 @@ class ProjectServiceTests {
     }
 
     Task readTaskById(ArrayList<Task> taskList, int taskId){
+        //Set task til null
         Task task = null;
+
+        //Loop igennem taskList
         for(int i = 0; i<taskList.size(); i++){
+            //Tjekker om task id er det samme som vi søger efter
             if (taskList.get(i).getId() == taskId){
+                //Set task
                 task = taskList.get(i);
             }
         }
