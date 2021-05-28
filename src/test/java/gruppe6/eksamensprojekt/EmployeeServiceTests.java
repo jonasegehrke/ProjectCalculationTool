@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class EmployeeServiceTests {
@@ -29,17 +29,40 @@ public class EmployeeServiceTests {
     }
 
     @Test
-    void testReadEmployeeList() {
+    void testReadEmployee() {
         //Arrange
         EmployeeService employeeService = new EmployeeService();
-        ArrayList<Employee> employeeList;
+        Employee employee;
         //Act
         employeeService.createEmployee("testName","testJobTitle");
-        employeeList = employeeService.readEmployeeList();
+        employee = employeeService.readEmployeeList().get(employeeService.readEmployeeList().size() - 1);
 
         //Assert
+        assertEquals("testName", employee.getEmpName());
+    }
 
+    @Test
+    void testDeleteEmployee() {
+        //Arrange
+        EmployeeService employeeService = new EmployeeService();
+        Employee employee;
+        //Act
+        employeeService.createEmployee("testNameDelete","testJobTitleDelete");
+        employee = employeeService.readEmployeeList().get(employeeService.readEmployeeList().size() - 1);
+        employeeService.deleteEmployee(employee.getId());
+        employee = readEmployeeById(employeeService.readEmployeeList(), employee.getId());
+        //Assert
+        assertNull(employee);
+    }
 
+    Employee readEmployeeById(ArrayList<Employee> employeeList, int employeeId){
+        Employee employee = null;
+        for(int i = 0; i < employeeList.size(); i++){
+            if(employeeList.get(i).getId() == employeeId){
+                employee = employeeList.get(i);
+            }
+        }
+        return employee;
     }
 
 

@@ -26,10 +26,11 @@ public class EmployeeService {
      * Reads all the employees from a list
      * @return returns a new list of employees
      */
-    public ArrayList readEmployeeList(){
+    public ArrayList<Employee> readEmployeeList(){
         employeeList = employeeMapper.readAllEmployees();
         return employeeList;
     }
+
 
     /**
      * Adds hours to a specific employee
@@ -69,6 +70,7 @@ public class EmployeeService {
         for(int i = 0; i < employeeList.size(); i++){
             if(employeeList.get(i).getId() == employeeId){
                 employeeMapper.deleteEmployee(employeeList.get(i));
+                employeeList.remove(i);
             }
         }
     }
