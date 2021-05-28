@@ -56,9 +56,14 @@ public class EmployeeServiceTests {
     }
 
     Employee readEmployeeById(ArrayList<Employee> employeeList, int employeeId){
+        //Set employee til null
         Employee employee = null;
+
+        //Loop igennem employeeList
         for(int i = 0; i < employeeList.size(); i++){
+            //Tjekker om employee id er det samme som vi søger efter
             if(employeeList.get(i).getId() == employeeId){
+                //Set employee
                 employee = employeeList.get(i);
             }
         }
