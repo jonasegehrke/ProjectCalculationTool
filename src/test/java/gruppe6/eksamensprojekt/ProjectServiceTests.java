@@ -177,6 +177,37 @@ class ProjectServiceTests {
         assertNull(subtask);
     }
 
+    @Test
+    void testAssignEmployeeToSubtask() {
+        //Arrange
+        ProjectService projectService = new ProjectService();
+        EmployeeService employeeService = new EmployeeService();
+        Employee employee;
+        Subtask subtask;
+        ArrayList<Task> taskList;
+        ArrayList<Subtask> subtaskList;
+        //Act
+        employeeService.createEmployee("testName", "testJobTitle");
+        employee = employeeService.readEmployeeList().get(employeeService.readEmployeeList().size() - 1);
+
+        projectService.createProject("testProject");
+
+        projectService.createTask("testTask", projectService.getCurrentProjectId());
+        taskList = projectService.readTaskList(projectService.getCurrentProjectId());
+
+        projectService.createSubtask("testSubtask", "0", taskList.get(0).getId());
+        subtaskList = projectService.readSubtaskList(taskList);
+        subtask = readSubtaskById(subtaskList, subtaskList.get(0).getId());
+
+        projectService.assignEmployeeToSubtask(subtask.getId(), employee.getId());
+
+        subtaskList = projectService.readSubtaskList(taskList);
+        subtask = readSubtaskById(subtaskList, subtaskList.get(0).getId());
+
+        //Assert
+        assertEquals(employee.getId(), subtask.getEmployeeId());
+    }
+
 
 
     Task readTaskById(ArrayList<Task> taskList, int taskId){

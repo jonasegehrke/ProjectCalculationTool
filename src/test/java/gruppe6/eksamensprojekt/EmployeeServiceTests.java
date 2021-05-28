@@ -22,7 +22,7 @@ public class EmployeeServiceTests {
         Employee employee;
         //Act
         employeeService.createEmployee("testName","testJobTitle");
-        employee = (Employee) employeeService.readEmployeeList().get(employeeService.readEmployeeList().size() - 1);
+        employee = employeeService.readEmployeeList().get(employeeService.readEmployeeList().size() - 1);
 
         //Assert
         assertEquals("testName", employee.getEmpName());
