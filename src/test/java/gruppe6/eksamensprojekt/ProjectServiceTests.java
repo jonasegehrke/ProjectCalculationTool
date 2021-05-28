@@ -2,6 +2,7 @@ package gruppe6.eksamensprojekt;
 
 import gruppe6.eksamensprojekt.domain.model.Employee;
 import gruppe6.eksamensprojekt.domain.model.Project;
+import gruppe6.eksamensprojekt.domain.model.Subtask;
 import gruppe6.eksamensprojekt.domain.model.Task;
 import gruppe6.eksamensprojekt.service.EmployeeService;
 import gruppe6.eksamensprojekt.service.ProjectService;
@@ -105,12 +106,73 @@ class ProjectServiceTests {
             projectService.deleteTask(task.getId(), employeeService);
             task = readTaskById(projectService.readTaskList(projectService.getCurrentProjectId()), task.getId());
 
-
-
-        //Assert
+       //Assert
             assertNull(task);
 
     }
+
+    @Test
+    void testReadSubtask() {
+        //Arrange
+            ProjectService projectService = new ProjectService();
+            ArrayList<Task> taskList;
+            ArrayList<Subtask> subtaskList;
+        //Act
+            projectService.createProject("testProject");
+            projectService.createTask("testTask", projectService.getCurrentProjectId());
+            taskList = projectService.readTaskList(projectService.getCurrentProjectId());
+
+            projectService.createSubtask("testSubtask", "0", taskList.get(0).getId());
+            subtaskList = projectService.readSubtaskList(taskList);
+
+        //Assert
+            assertEquals("testSubtask", subtaskList.get(0).getTitle());
+    }
+
+    @Test
+    void testCreateSubtask() {
+        //Arrange
+        ProjectService projectService = new ProjectService();
+        ArrayList<Task> taskList;
+        ArrayList<Subtask> subtaskList;
+        //Act
+        projectService.createProject("testProject");
+        projectService.createTask("testTask", projectService.getCurrentProjectId());
+        taskList = projectService.readTaskList(projectService.getCurrentProjectId());
+
+        projectService.createSubtask("testSubtask", "0", taskList.get(0).getId());
+        subtaskList = projectService.readSubtaskList(taskList);
+
+        //Assert
+        assertEquals("testSubtask", subtaskList.get(0).getTitle());
+    }
+
+    @Test
+    void testDeleteSubtask() {
+        //Arrange
+            ProjectService projectService = new ProjectService();
+            ArrayList<Task> taskList;
+            ArrayList<Subtask> subtaskList;
+            int index;
+            Subtask subtask;
+        //Act
+        projectService.createProject("testProject");
+
+        projectService.createTask("testTask", projectService.getCurrentProjectId());
+        taskList = projectService.readTaskList(projectService.getCurrentProjectId());
+
+        projectService.createSubtask("testSubtask", "0", taskList.get(0).getId());
+        subtaskList = projectService.readSubtaskList(taskList);
+        index = projectService.readSubtaskList(taskList).size()-1;
+        projectService.deleteSubtask(subtaskList.get(index).getId());
+        subtask = readSubtaskById(subtaskList, subtaskList.get(index).getId());
+
+
+        //Assert
+        assertNull(subtask);
+    }
+
+
 
     Task readTaskById(ArrayList<Task> taskList, int taskId){
         //Set task til null
@@ -125,6 +187,21 @@ class ProjectServiceTests {
             }
         }
         return task;
+    }
+
+    Subtask readSubtaskById(ArrayList<Subtask> subtaskList, int subtaskId){
+        //Set Subtask til null
+        Subtask subtask = null;
+
+        //Loop igennem SubtaskList
+        for(int i = 0; i<subtaskList.size(); i++){
+            //Tjekker om Subtask id er det samme som vi søger efter
+            if (subtaskList.get(i).getId() == subtaskId){
+                //Set Subtask
+                subtask = subtaskList.get(i);
+            }
+        }
+        return subtask;
     }
 
 
