@@ -24,7 +24,7 @@ public class DBManager {
      * @return returns the connection to the mySQL database
      */
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
