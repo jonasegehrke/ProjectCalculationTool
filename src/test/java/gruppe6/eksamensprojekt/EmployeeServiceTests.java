@@ -1,3 +1,5 @@
+//Ansvarlig udvikler: Jonas Emil Gehrke
+
 package gruppe6.eksamensprojekt;
 
 import gruppe6.eksamensprojekt.domain.model.Employee;

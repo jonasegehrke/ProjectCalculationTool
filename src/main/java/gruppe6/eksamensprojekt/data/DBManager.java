@@ -1,3 +1,4 @@
+//Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jonas Emil Gehrke med Jimmi Paw Pisalita som kode skriver
 package gruppe6.eksamensprojekt.data;
 
 import org.springframework.core.io.ClassPathResource;

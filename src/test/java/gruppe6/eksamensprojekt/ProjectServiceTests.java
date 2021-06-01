@@ -1,3 +1,5 @@
+//Peer programming: Andreas Holm Andersen, Jonas Emil Gehrke og Jimmi Paw Pisalita
+
 package gruppe6.eksamensprojekt;
 
 import gruppe6.eksamensprojekt.domain.model.Employee;

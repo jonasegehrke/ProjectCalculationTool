@@ -1,3 +1,4 @@
+
 package gruppe6.eksamensprojekt;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;

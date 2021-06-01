@@ -1,3 +1,4 @@
+//Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jonas Emil Gehrke og Jimmi Paw Pisalita
 package gruppe6.eksamensprojekt.domain.model;
 
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ public class Task {
     private String title;
     private double hours;
     private int projectId;
-    private ArrayList<Subtask> subtasks;
 
     public Task(String title, double hours, int projectId) {
         this.title = title;
@@ -16,13 +16,7 @@ public class Task {
         this.projectId = projectId;
     }
 
-    public void addSubTask(Subtask subTask){
-        subtasks.add(subTask);
-    }
 
-    public ArrayList<Subtask> getSubTasks() {
-        return subtasks;
-    }
 
     /**
      * Gets a tasks id

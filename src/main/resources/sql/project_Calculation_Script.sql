@@ -1,3 +1,5 @@
+/*Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jonas Emil Gehrke og Jimmi Paw Pisalita
+*/
 Drop schema if exists project_calculator;
 
 /* DDL: Lav databasen project_calculator */

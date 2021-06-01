@@ -1,3 +1,5 @@
+//Ansvarlig udvikler: Jimmi Paw Pisalita
+
 let intro = document.querySelector(".splash-intro");
 let logo = document.querySelector(".splash-logo-header");
 let logoSpan = document.querySelectorAll(".splash-logo");

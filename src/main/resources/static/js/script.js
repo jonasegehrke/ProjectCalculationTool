@@ -1,3 +1,5 @@
+// Ansvarlig udvikler: Jonas Emil Gehrke
+
 function openNav() {
     document.getElementById("employeenav").style.width = "200px";
     document.getElementById("wrapper").style.marginLeft = "-200px";

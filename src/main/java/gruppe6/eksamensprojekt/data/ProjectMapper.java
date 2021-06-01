@@ -1,3 +1,5 @@
+//Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jimmi Paw Pisalita og Jonas Emil Gehrke
+
 package gruppe6.eksamensprojekt.data;
 
 import gruppe6.eksamensprojekt.domain.model.Project;
