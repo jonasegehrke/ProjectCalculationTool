@@ -1,4 +1,4 @@
-//Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jonas Emil Gehrke med Jimmi Paw Pisalita som kode skriver
+//Peer programming: Andreas Holm Andersen, Jacob Gade Harder, Jonas Emil Gehrke og Jimmi Paw Pisalita
 
 package gruppe6.eksamensprojekt.applicationlayer.controllers;
 
