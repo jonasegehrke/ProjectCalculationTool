@@ -2,7 +2,7 @@
 
 This is a school project
 
-##Setup
+## Setup
 
 Copy the following code below and insert into your own application.properties. Make sure your file is located in /resources. (Insert own mysql username and password)
 
