@@ -1,6 +1,6 @@
 # ProjectCalculationTool
 
-This is a school project
+This is a school web app project, made with Java Spring and hosted on Tomcat
 
 ## Setup
 
